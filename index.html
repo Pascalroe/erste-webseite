@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angebotsübersicht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .angebot {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .angebot h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .preis {
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .beschreibung {
+            color: #666;
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏷️ Angebotsübersicht</h1>
+            <p>Unsere aktuellen Angebote für Sie</p>
+        </header>
+        
+        <div class="grid">
+            <div class="angebot">
+                <h2>Produkt A</h2>
+                <div class="preis">€99,00</div>
+                <p class="beschreibung">Beschreibung folgt...</p>
+            </div>
+            <div class="angebot">
+                <h2>Produkt B</h2>
+                <div class="preis">€149,00</div>
+                <p class="beschreibung">Beschreibung folgt...</p>
+            </div>
+            <div class="angebot">
+                <h2>Produkt C</h2>
+                <div class="preis">€79,00</div>
+                <p class="beschreibung">Beschreibung folgt...</p>
+            </div>
+            <div class="angebot">
+                <h2>Produkt D</h2>
+                <div class="preis">€199,00</div>
+                <p class="beschreibung">Beschreibung folgt...</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 - Alle Angaben ohne Gewähr</p>
+        </footer>
+    </div>
+</body>
+</html>
