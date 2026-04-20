@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt & Fragebogen – Webdesign</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -583,9 +584,9 @@
                 </form>
                 
                 <div class="success-message" id="success-message">
-                    <div class="icon">📧</div>
-                    <h3>Ihre E-Mail-App wurde geöffnet!</h3>
-                    <p>Bitte senden Sie die vorgefertigte E-Mail ab. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+                    <div class="icon">📄✅</div>
+                    <h3>PDF wird heruntergeladen!</h3>
+                    <p>Ihre Zusammenfassung wurde als PDF gespeichert.<br>Ihre E-Mail-App öffnet sich ebenfalls – bitte senden Sie die E-Mail ab.<br>Wir melden uns so schnell wie möglich bei Ihnen.</p>
                 </div>
             </div>
             
@@ -660,12 +661,74 @@
             emailBody += '--- ZUSÄTZLICHE INFORMATIONEN ---\n';
             emailBody += formData.get('nachricht') || 'Keine zusätzlichen Informationen';
             
-            // Create mailto link
+            // Generate PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Header
+            doc.setFontSize(20);
+            doc.setTextColor(30, 64, 175);
+            doc.text('Neue Webdesign-Anfrage', 20, 25);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text('Datum: ' + new Date().toLocaleDateString('de-DE'), 20, 33);
+            doc.text('Ihre Zusammenfassung:', 20, 42);
+            
+            // Content
+            doc.setFontSize(11);
+            doc.setTextColor(30, 41, 59);
+            let y = 52;
+            
+            const addSection = (title, content) => {
+                doc.setFont(undefined, 'bold');
+                doc.setTextColor(30, 64, 175);
+                doc.text(title, 20, y);
+                y += 7;
+                doc.setFont(undefined, 'normal');
+                doc.setTextColor(30, 41, 59);
+                const lines = doc.splitTextToSize(content, 170);
+                doc.text(lines, 20, y);
+                y += lines.length * 6 + 8;
+            };
+            
+            addSection('Name:', formData.get('name') || 'Nicht angegeben');
+            addSection('E-Mail:', formData.get('email') || 'Nicht angegeben');
+            addSection('Telefon:', formData.get('phone') || 'Nicht angegeben');
+            addSection('Unternehmen:', formData.get('company') || 'Nicht angegeben');
+            addSection('Projektart:', (formData.get('projektart') || 'Nicht angegeben').toUpperCase());
+            
+            const pakete = formData.getAll('pakete[]');
+            addSection('Paket-Interesse:', pakete.length > 0 ? pakete.join(', ').toUpperCase() : 'Keine Auswahl');
+            addSection('Aktuelle Webseite:', formData.get('website_current') || 'Keine');
+            addSection('Seitenanzahl:', (formData.get('pages') || 'Nicht angegeben').toUpperCase());
+            addSection('Funktionen:', (formData.get('funktionen') || 'Nicht angegeben').toUpperCase());
+            addSection('Design-Style:', (formData.get('design') || 'Nicht angegeben').toUpperCase());
+            addSection('Farben:', formData.get('farben') || 'Keine Präferenz');
+            addSection('Budget:', (formData.get('budget') || 'Nicht angegeben').toUpperCase());
+            addSection('Timeline:', (formData.get('timeline') || 'Nicht angegeben').toUpperCase());
+            addSection('Dringlichkeit:', formData.get('dringlichkeit') || '3' + ' / 5');
+            addSection('Nachricht:', formData.get('nachricht') || 'Keine zusätzlichen Informationen');
+            
+            // Footer
+            y += 10;
+            doc.setFillColor(248, 250, 252);
+            doc.rect(15, y - 5, 180, 35, 'F');
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(30, 41, 59);
+            doc.text('Vielen Dank für Ihre Anfrage!', 20, y + 5);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(71, 85, 105);
+            doc.text('Wir melden uns so schnell wie möglich bei Ihnen.', 20, y + 13);
+            doc.text('Kontakt: pascalroe@proton.me', 20, y + 20);
+            
+            // Download PDF
+            doc.save('Anfrage-Zusammenfassung.pdf');
+            
+            // Also open mailto to Pascal
             const subject = encodeURIComponent('Neue Webdesign-Anfrage');
             const body = encodeURIComponent(emailBody);
             const mailtoLink = 'mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body;
-            
-            // Open email client
             location.href = mailtoLink;
             
             // Show success message
