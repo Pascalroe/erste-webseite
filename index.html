@@ -845,6 +845,13 @@
                 padding: 10px 12px;
                 font-size: 0.75rem;
                 margin-top: 12px;
+                background: var(--primary);
+                color: var(--white);
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                text-align: center;
             }
             .pricing-card.featured .btn {
                 display: block;
@@ -1012,7 +1019,7 @@
                             <li>DSGVO-konform (ohne Cookies)</li>
                             <li>Übergabe aller Dateien</li>
                         </ul>
-                        <button class="btn btn-outline" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
+                        <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
                     </article>
                     
                     <!-- Standard -->
@@ -1036,7 +1043,7 @@
                             <li>Textunterstützung durch KI</li>
                             <li>2 Revisionsrunden inklusive</li>
                         </ul>
-                        <button class="btn" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
+                        <a href="pakete.html" class="btn">Mehr erfahren</a>
                     </article>
                     
                     <!-- Premium -->
@@ -1059,7 +1066,7 @@
                             <li>DSGVO-freundliche Analytics-Alternative</li>
                             <li>3 Revisionsrunden inklusive</li>
                         </ul>
-                        <button class="btn btn-outline" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
+                        <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
                     </article>
                 </div>
             </div>
@@ -1314,23 +1321,6 @@
             const card = btn.closest('.maintenance-card');
             const fullList = card.querySelector('ul:not(.features-preview)');
             const previewList = card.querySelector('.features-preview');
-            
-            if (fullList.style.display === 'block') {
-                fullList.style.display = 'none';
-                previewList.style.display = 'block';
-                btn.textContent = 'Mehr erfahren';
-            } else {
-                fullList.style.display = 'block';
-                previewList.style.display = 'none';
-                btn.textContent = 'Weniger anzeigen';
-            }
-        }
-        
-        // Toggle Details for Pricing Cards
-        function toggleDetailsPricing(btn) {
-            const card = btn.closest('.pricing-card');
-            const fullList = card.querySelector('.pricing-features');
-            const previewList = card.querySelector('.pricing-features-preview');
             
             if (fullList.style.display === 'block') {
                 fullList.style.display = 'none';
