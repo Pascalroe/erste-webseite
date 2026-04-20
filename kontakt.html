@@ -562,7 +562,7 @@
                                     <span>Keine Eile</span>
                                     <span>Sehr dringend</span>
                                 </div>
-                                <input type="range" id="dringlichkeit" name="dringlichkeit" min="1" max="5" value="3">
+                                <input type="range" id="dringlichkeit" name="dringlichkeit" min="1" max="10" value="5">
                             </div>
                         </div>
                     </div>
@@ -655,7 +655,7 @@
             emailBody += '--- BUDGET & ZEITRAHMEN ---\n';
             emailBody += 'Budget: ' + (formData.get('budget') || 'Nicht angegeben') + '\n';
             emailBody += 'Timeline: ' + (formData.get('timeline') || 'Nicht angegeben') + '\n';
-            emailBody += 'Dringlichkeit: ' + (formData.get('dringlichkeit') || '3') + '/5\n\n';
+            emailBody += 'Dringlichkeit: ' + (formData.get('dringlichkeit') || '5') + '/10\n\n';
             
             // Section 7: Additional Info
             emailBody += '--- ZUSÄTZLICHE INFORMATIONEN ---\n';
@@ -707,7 +707,7 @@
             addSection('Farben:', formData.get('farben') || 'Keine Präferenz');
             addSection('Budget:', (formData.get('budget') || 'Nicht angegeben').toUpperCase());
             addSection('Timeline:', (formData.get('timeline') || 'Nicht angegeben').toUpperCase());
-            addSection('Dringlichkeit:', (formData.get('dringlichkeit') || '3') + ' / 5');
+            addSection('Dringlichkeit:', (formData.get('dringlichkeit') || '5') + ' / 10');
             addSection('Nachricht:', formData.get('nachricht') || 'Keine zusätzlichen Informationen');
             
             // Footer
@@ -725,10 +725,11 @@
             // Download PDF
             doc.save('Anfrage-Zusammenfassung.pdf');
             
-            // Open mailto in new window (Safari compatibility)
-            const subject = encodeURIComponent('Neue Webdesign-Anfrage');
-            const body = encodeURIComponent(emailBody);
-            window.open('mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body, '_blank');
+            // Open simple mailto (PDF has all details)
+            setTimeout(() => {
+                const subject = 'Neue Webdesign-Anfrage';
+                window.open('mailto:pascalroe@proton.me?subject=' + encodeURIComponent(subject), '_self');
+            }, 500);
             
             // Show success message
             this.style.display = 'none';
