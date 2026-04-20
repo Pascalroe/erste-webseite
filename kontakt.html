@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt & Fragebogen – Webdesign</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --success: #16a34a;
+            --error: #dc2626;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .nav-links a {
+            color: var(--gray-600);
+            margin-left: 32px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary);
+        }
+        .nav-links a.back {
+            color: var(--primary);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 60px 0 100px;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 1.15rem;
+            margin-bottom: 50px;
+        }
+        
+        /* Form */
+        .form-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-200);
+        }
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .form-section:last-of-type {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .form-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .form-section > p {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+        label .required {
+            color: var(--error);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--gray-800);
+            background: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        select {
+            cursor: pointer;
+        }
+        
+        /* Radio/Checkbox Groups */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-item:hover {
+            background: var(--gray-100);
+        }
+        .option-item.selected {
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+        }
+        .option-item input {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .option-item .option-text {
+            flex: 1;
+        }
+        .option-item .option-title {
+            font-weight: 500;
+            color: var(--gray-800);
+        }
+        .option-item .option-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+        
+        /* Range Slider */
+        .range-group {
+            padding: 16px 0;
+        }
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--gray-200);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+        .btn:hover,
+        .btn:focus {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover,
+        .btn-outline:focus {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        .success-message.show {
+            display: block;
+        }
+        .success-message .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .success-message h3 {
+            font-size: 1.75rem;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .success-message p {
+            color: var(--gray-600);
+        }
+        
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 16px;
+            z-index: 1000;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Focus States */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
+        /* Mobile */
+        @media (max-width: 600px) {
+            .page-title {
+                font-size: 1.75rem;
+            }
+            .form-card {
+                padding: 32px 24px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .btn-group .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Hauptnavigation">
+        <div class="container">
+            <a href="index.html" class="logo">Webdesign</a>
+            <div class="nav-links">
+                <a href="index.html#auswahl" class="back">← Zurück</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main id="main-content">
+        <div class="container">
+            <h1 class="page-title">Kontakt & Fragebogen</h1>
+            <p class="page-subtitle">Erzählen Sie uns von Ihrem Projekt – wir melden uns innerhalb von 24 Stunden.</p>
+            
+            <div class="form-card">
+                <form id="questionnaire-form" action="https://formspree.io/f/ihre-form-id" method="POST">
+                    
+                    <!-- Section 1: About You -->
+                    <div class="form-section">
+                        <h3>1. Über Sie</h3>
+                        <p>Damit wir wissen, wie wir Sie erreichen können.</p>
+                        
+                        <div class="form-group">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Max Mustermann">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-Mail <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="ihre@email.de">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefon (optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+49 123 456789">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Unternehmen / Branche</label>
+                            <input type="text" id="company" name="company" placeholder="z.B. Elektrotechnik, Gastro, Dienstleistung">
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Project Type -->
+                    <div class="form-section">
+                        <h3>2. Projektart</h3>
+                        <p>Was möchten Sie mit uns erreichen?</p>
+                        
+                        <div class="option-group">
+                            <label class="option-item">
+                                <input type="radio" name="projektart" value="neue-webseite" required>
+                                <div class="option-text">
+                                    <div class="option-title">Neue Webseite erstellen</div>
+                                    <div class="option-desc">Ich habe noch keine Webseite und möchte eine professionelle Presence aufbauen.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="radio" name="projektart" value="webseite-erneuern">
+                                <div class="option-text">
+                                    <div class="option-title">Webseite erneuern (Relaunch)</div>
+                                    <div class="option-desc">Ich habe bereits eine Webseite, die modernisiert werden soll.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="radio" name="projektart" value="sonstiges">
+                                <div class="option-text">
+                                    <div class="option-title">Sonstiges</div>
+                                    <div class="option-desc">Etwas anderes – kontaktieren Sie uns für Details.</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Package Interest -->
+                    <div class="form-section">
+                        <h3>3. Paket-Interesse</h3>
+                        <p>Welches Paket kommt für Sie in Frage? (Mehrfachauswahl möglich)</p>
+                        
+                        <div class="option-group">
+                            <label class="option-item">
+                                <input type="checkbox" name="pakete[]" value="basis">
+                                <div class="option-text">
+                                    <div class="option-title">Basis (690€ einmalig)</div>
+                                    <div class="option-desc">Einseitige Website – perfekt für einfache Präsenzen.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="checkbox" name="pakete[]" value="standard">
+                                <div class="option-text">
+                                    <div class="option-title">Standard (1.290€ einmalig)</div>
+                                    <div class="option-desc">Bis zu 5 Unterseiten – der beste Start für Ihr Business.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="checkbox" name="pakete[]" value="premium">
+                                <div class="option-text">
+                                    <div class="option-title">Premium (2.490€ einmalig)</div>
+                                    <div class="option-desc">Bis zu 10 Unterseiten – individuelles Design, alles inklusive.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="checkbox" name="pakete[]" value="wartung">
+                                <div class="option-text">
+                                    <div class="option-title">Wartung & Betreuung</div>
+                                    <div class="option-desc">Monatliche Betreuung ab 19€/Monat.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="option-item">
+                                <input type="checkbox" name="pakete[]" value="unsicher">
+                                <div class="option-text">
+                                    <div class="option-title">Ich bin mir noch unsicher</div>
+                                    <div class="option-desc">Beraten Sie mich gerne.</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 4: Website Details -->
+                    <div class="form-section">
+                        <h3>4. Webseite-Details</h3>
+                        <p>Helfen Sie uns, Ihre Wünsche besser zu verstehen.</p>
+                        
+                        <div class="form-group">
+                            <label for="website-current">Aktuelle Webseite (falls vorhanden)</label>
+                            <input type="url" id="website-current" name="website_current" placeholder="https://www.ihre-aktuelle-webseite.de">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pages">Wie viele Seiten/ Unterseiten schätzen Sie?</label>
+                            <select id="pages" name="pages">
+                                <option value="">Bitte auswählen...</option>
+                                <option value="1">1 Seite (One-Pager)</option>
+                                <option value="2-3">2-3 Seiten</option>
+                                <option value="4-5">4-5 Seiten</option>
+                                <option value="6-10">6-10 Seiten</option>
+                                <option value="10+">Mehr als 10 Seiten</option>
+                                <option value="unsicher">Noch unsicher</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="funktionen">Gewünschte Funktionen</label>
+                            <select id="funktionen" name="funktionen">
+                                <option value="">Bitte auswählen...</option>
+                                <option value="einfach">Nur Kontaktformular</option>
+                                <option value="mittel">Bildergalerie, Google Maps</option>
+                                <option value="erweitert">Blog/News, Terminbuchung</option>
+                                <option value="shop">Shop / Online-Bestellung</option>
+                                <option value="sonstiges">Sonstiges</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 5: Design -->
+                    <div class="form-section">
+                        <h3>5. Design-Präferenzen</h3>
+                        <p>Beschreiben Sie Ihren Wunsch-Look.</p>
+                        
+                        <div class="form-group">
+                            <label for="design">Habens Sie bereits Design-Vorstellungen?</label>
+                            <select id="design" name="design">
+                                <option value="">Bitte auswählen...</option>
+                                <option value="modern-clean">Modern & clean</option>
+                                <option value="elegant-luxus">Elegant / Luxus</option>
+                                <option value="bunt-farbenfroh">Bunt / Farbenfroh</option>
+                                <option value="minimalistisch">Minimalistisch</option>
+                                <option value="traditionell-klassisch">Traditionell / Klassisch</option>
+                                <option value="frei">Ich lasse mich überraschen</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="farben">Farbvorlieben (optional)</label>
+                            <input type="text" id="farben" name="farben" placeholder="z.B. Blau und Weiß, Erdtöne, keine Präferenz">
+                        </div>
+                    </div>
+                    
+                    <!-- Section 6: Budget & Timeline -->
+                    <div class="form-section">
+                        <h3>6. Budget & Zeitrahmen</h3>
+                        <p>Letzte Fragen zu Budget und Zeitplan.</p>
+                        
+                        <div class="form-group">
+                            <label for="budget">Budget-Vorstellung</label>
+                            <select id="budget" name="budget">
+                                <option value="">Bitte auswählen...</option>
+                                <option value="bis-1000">Bis 1.000€</option>
+                                <option value="1000-2000">1.000€ - 2.000€</option>
+                                <option value="2000-3000">2.000€ - 3.000€</option>
+                                <option value="3000+">Über 3.000€</option>
+                                <option value="flexibel">Flexibel – es kommt auf die Qualität an</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline">Wann soll die Webseite fertig sein?</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Bitte auswählen...</option>
+                                <option value="dringend">So schnell wie möglich</option>
+                                <option value="1-monat">Innerhalb 1 Monats</option>
+                                <option value="1-2-monat">1-2 Monate</option>
+                                <option value="2-3-monat">2-3 Monate</option>
+                                <option value="flexibel">Zeitrahmen flexibel</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dringlichkeit">Dringlichkeit</label>
+                            <div class="range-group">
+                                <div class="range-labels">
+                                    <span>Keine Eile</span>
+                                    <span>Sehr dringend</span>
+                                </div>
+                                <input type="range" id="dringlichkeit" name="dringlichkeit" min="1" max="5" value="3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 7: Additional Info -->
+                    <div class="form-section">
+                        <h3>7. Zusätzliche Informationen</h3>
+                        <p>Alles weitere, was Sie uns mitteilen möchten.</p>
+                        
+                        <div class="form-group">
+                            <label for="nachricht">Ihre Nachricht</label>
+                            <textarea id="nachricht" name="nachricht" placeholder="Beschreiben Sie Ihr Projekt, Ihre Wünsche, Fragen oder Anmerkungen..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit" class="btn">Anfrage absenden</button>
+                    </div>
+                </form>
+                
+                <div class="success-message" id="success-message">
+                    <div class="icon">✓</div>
+                    <h3>Vielen Dank für Ihre Anfrage!</h3>
+                    <p>Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Auto-select option items when radio/checkbox is clicked
+        document.querySelectorAll('.option-item input[type="radio"], .option-item input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', () => {
+                // Toggle selected class on parent
+                if (input.checked) {
+                    // For radio buttons in same group, remove selected from siblings
+                    if (input.type === 'radio') {
+                        input.closest('.option-group').querySelectorAll('.option-item').forEach(item => {
+                            item.classList.remove('selected');
+                        });
+                    }
+                    input.closest('.option-item').classList.add('selected');
+                } else {
+                    input.closest('.option-item').classList.remove('selected');
+                }
+            });
+        });
+        
+        // Form submission (for demo - in production, connect to Formspree or similar)
+        document.getElementById('questionnaire-form').addEventListener('submit', function(e) {
+            // For now, show success message
+            // In production, remove this and let the form submit to Formspree
+            e.preventDefault();
+            
+            // Hide form, show success
+            this.style.display = 'none';
+            document.getElementById('success-message').classList.add('show');
+            
+            // Scroll to success message
+            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
