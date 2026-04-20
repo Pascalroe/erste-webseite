@@ -99,13 +99,41 @@
             background: var(--white);
         }
         .category-wartung {
-            background: var(--gray-50);
-            border-top: 1px solid var(--gray-200);
-            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-800);
+            border-top: 4px solid var(--primary);
+            border-bottom: 4px solid var(--primary);
             padding: 40px 0;
         }
+        .category-wartung .category-title {
+            color: white;
+        }
+        .category-wartung .category-subtitle {
+            color: var(--gray-400);
+        }
+        .category-wartung .package-card {
+            background: var(--gray-700);
+            border-radius: 12px;
+            margin: 0 16px 12px;
+            border: none;
+        }
+        .category-wartung .package-card .package-name {
+            color: white;
+        }
+        .category-wartung .package-card .package-price {
+            color: var(--accent);
+        }
+        .category-wartung .package-card .package-price span {
+            color: var(--gray-400);
+        }
+        .category-wartung .package-card .package-features li {
+            color: var(--gray-300);
+            border-color: var(--gray-600);
+        }
+        .category-wartung .package-card .package-features li::before {
+            color: var(--accent);
+        }
         .category-hosting {
-            background: var(--white);
+            background: var(--gray-50);
             padding: 40px 0;
         }
         
@@ -132,25 +160,30 @@
             border-bottom: none;
         }
         .package-card.featured {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gray-50);
             border-radius: 16px;
             margin: 0 16px 16px;
-            border: none;
+            border: 2px solid var(--primary-light);
         }
-        .package-card.featured .package-name,
-        .package-card.featured .package-price {
-            color: white;
+        .package-card.featured .package-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            margin: -20px -20px 16px -20px;
+            padding: 20px 20px 16px;
+            border-radius: 14px 14px 0 0;
         }
         .package-card.featured .package-label {
             color: var(--accent);
         }
-        .package-card.featured .package-features li {
-            color: rgba(255,255,255,0.9);
-            border-color: rgba(255,255,255,0.1);
+        .package-card.featured .package-name {
+            color: white;
         }
-        .package-card.featured .package-features li::before {
-            color: var(--accent);
+        .package-card.featured .package-price {
+            color: white;
         }
+        .package-card.featured .package-price span {
+            color: rgba(255,255,255,0.7);
+        }
+
         .package-header {
             display: flex;
             justify-content: space-between;
