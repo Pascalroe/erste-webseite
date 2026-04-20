@@ -458,6 +458,86 @@
             display: none;
         }
         
+        /* Detail Modal Overlay */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .detail-modal.open {
+            display: flex;
+        }
+        .detail-modal .modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .detail-modal .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--gray-100);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+        }
+        .detail-modal .close-btn:hover {
+            background: var(--gray-200);
+        }
+        .detail-modal h4 {
+            font-size: 1.5rem;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .detail-modal .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .detail-modal ul {
+            list-style: none;
+            text-align: left;
+        }
+        .detail-modal li {
+            padding: 8px 0;
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .detail-modal li:last-child {
+            border-bottom: none;
+        }
+        .detail-modal li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .detail-modal .modal-btn {
+            margin-top: 24px;
+            width: 100%;
+        }
+        
         .cta-box {
             text-align: center;
             margin-top: 50px;
@@ -793,6 +873,15 @@
             .maintenance-card.alt .features-preview li {
                 color: rgba(255,255,255,0.85);
             }
+            .maintenance-card.no-expand .btn {
+                display: none;
+            }
+            .maintenance-card.no-expand .features-preview {
+                display: block !important;
+            }
+            .maintenance-card.no-expand ul:not(.features-preview) {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -821,6 +910,17 @@
     
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobile-menu">
+    
+    <!-- Detail Modal -->
+    <div class="detail-modal" id="detail-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h4 id="modal-title"></h4>
+            <div class="price" id="modal-price"></div>
+            <ul id="modal-list"></ul>
+            <a href="kontakt.html" class="btn modal-btn">Jetzt anfragen</a>
+        </div>
+    </div>
         <a href="#auswahl" class="mobile-link">Auswahl</a>
         <a href="#pakete" class="mobile-link">Pakete</a>
         <a href="#wartung" class="mobile-link">Wartung</a>
@@ -1005,52 +1105,34 @@
                 <div class="wartung-subsection">
                     <h3 class="subsection-title">Eigenverantwortliches Hosting</h3>
                     <div class="maintenance-grid">
-                        <article class="maintenance-card alt">
+                        <article class="maintenance-card alt no-expand">
                             <h4>Self-Service</h4>
                             <div class="price">0€ <span>/Monat</span></div>
-                            <ul class="features-preview">
-                                <li>Kein Hosting</li>
-                                <li>Selbstorganisation</li>
-                                <li>Änderungen auf Anfrage</li>
-                            </ul>
                             <ul>
                                 <li>Kein Hosting, keine Pflege</li>
                                 <li>Sie kümmern sich selbst</li>
                                 <li>Änderungen auf Anfrage</li>
                             </ul>
-                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
-                        <article class="maintenance-card alt">
+                        <article class="maintenance-card alt no-expand">
                             <h4>Domain & Hosting</h4>
                             <div class="price">19–24€ <span>/Monat</span></div>
-                            <ul class="features-preview">
-                                <li>Jährlich/Monatlich</li>
-                                <li>2 Änderungen/Monat</li>
-                                <li>Umsetzung 48h</li>
-                            </ul>
                             <ul>
                                 <li>Jährlich (19€) oder monatlich (24€)</li>
                                 <li>Inklusive 2 kleine Änderungen pro Monat</li>
                                 <li>Umsetzung innerhalb 48h</li>
                             </ul>
-                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
-                        <article class="maintenance-card alt">
+                        <article class="maintenance-card alt no-expand">
                             <h4>Ultimative Betreuung</h4>
                             <div class="price">auf Anfrage</div>
-                            <ul class="features-preview">
-                                <li>Premium inklusive</li>
-                                <li>8 Änderungen/Monat</li>
-                                <li>Alles aus einer Hand</li>
-                            </ul>
                             <ul>
                                 <li>Premium-Paket inklusive</li>
                                 <li>Bis zu 8 Änderungen pro Monat</li>
                                 <li>Alles aus einer Hand</li>
                             </ul>
-                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                     </div>
                 </div>
@@ -1201,22 +1283,40 @@
             });
         });
         
-        // Toggle Details for Maintenance Cards
+        // Toggle Details for Maintenance Cards - Opens Modal
         function toggleDetails(btn) {
             const card = btn.closest('.maintenance-card');
+            const title = card.querySelector('h4').textContent;
+            const price = card.querySelector('.price').innerHTML;
             const fullList = card.querySelector('ul:not(.features-preview)');
-            const previewList = card.querySelector('.features-preview');
+            const listItems = fullList.querySelectorAll('li');
             
-            if (fullList.style.display === 'block') {
-                fullList.style.display = 'none';
-                previewList.style.display = 'block';
-                btn.textContent = 'Mehr erfahren';
-            } else {
-                fullList.style.display = 'block';
-                previewList.style.display = 'none';
-                btn.textContent = 'Weniger anzeigen';
-            }
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-price').innerHTML = price;
+            
+            const modalList = document.getElementById('modal-list');
+            modalList.innerHTML = '';
+            listItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.textContent;
+                modalList.appendChild(li);
+            });
+            
+            document.getElementById('detail-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
+        
+        function closeModal() {
+            document.getElementById('detail-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal on background click
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
