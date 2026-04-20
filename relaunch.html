@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaunch – Website erneuern | quark</title>
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+        
+        nav {
+            background: var(--white);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+        
+        .form-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .form-section h3 {
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .form-section > p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 12px;
+        }
+        label span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--white);
+        }
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .checkbox-item:hover,
+        .radio-item:hover {
+            border-color: var(--primary-light);
+            background: var(--gray-50);
+        }
+        .checkbox-item input,
+        .radio-item input {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        .checkbox-item.checked,
+        .radio-item.checked {
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+        }
+        .checkbox-item .item-text,
+        .radio-item .item-text {
+            flex: 1;
+        }
+        .checkbox-item .item-title,
+        .radio-item .item-title {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .checkbox-item .item-desc,
+        .radio-item .item-desc {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 32px;
+        }
+        .submit-section p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-top: 16px;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .success-message.show {
+            display: block;
+        }
+        .success-message h2 {
+            font-size: 1.75rem;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+        .success-message p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: var(--gray-900);
+            color: var(--gray-400);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 24px;
+            text-align: center;
+        }
+        footer a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        footer a:hover {
+            color: var(--white);
+        }
+        footer .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 600px) {
+            main { padding: 24px 16px; }
+            .form-section { padding: 20px 16px; }
+            .page-header h1 { font-size: 1.5rem; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">q</div>
+            quark
+        </a>
+    </nav>
+    
+    <main id="main-content">
+        <div class="page-header">
+            <h1>Website-Relaunch</h1>
+            <p>Erzählen Sie uns von Ihrer aktuellen Website und Ihren Zielen.</p>
+        </div>
+        
+        <form id="relaunch-form">
+            <!-- Section 1: Current Website -->
+            <div class="form-section">
+                <h3>1. Ihre aktuelle Website</h3>
+                <p>Welche Website soll erneuert werden?</p>
+                
+                <label>
+                    URL Ihrer aktuellen Website
+                    <input type="url" name="current_url" placeholder="https://www.ihre-website.de" required>
+                </label>
+            </div>
+            
+            <!-- Section 2: What to renew -->
+            <div class="form-section">
+                <h3>2. Was soll erneuert werden?</h3>
+                <p>Was sind Ihre Hauptgründe für den Relaunch? (Mehrfachauswahl möglich)</p>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="Veraltetes Design">
+                        <div class="item-text">
+                            <div class="item-title">Veraltetes Design</div>
+                            <div class="item-desc">Die Website sieht nicht mehr modern aus.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="Nicht mobiloptimiert">
+                        <div class="item-text">
+                            <div class="item-title">Nicht mobiloptimiert</div>
+                            <div class="item-desc">Die Website funktioniert schlecht auf Smartphones.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="Langsame Ladezeiten">
+                        <div class="item-text">
+                            <div class="item-title">Langsame Ladezeiten</div>
+                            <div class="item-desc">Die Seite lädt zu langsam.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="Schlechte Usability">
+                        <div class="item-text">
+                            <div class="item-title">Schlechte Usability</div>
+                            <div class="item-desc">Besucher finden sich schwer zurecht.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="Neue Inhalte/Struktur">
+                        <div class="item-text">
+                            <div class="item-title">Neue Inhalte/Struktur</div>
+                            <div class="item-desc">Die Struktur oder Inhalte sollen komplett überarbeitet werden.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="SEO-Verbesserung">
+                        <div class="item-text">
+                            <div class="item-title">SEO-Verbesserung</div>
+                            <div class="item-desc">Die Website soll besser bei Google gefunden werden.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="was_erneuern" value="DSGVO-Probleme">
+                        <div class="item-text">
+                            <div class="item-title">DSGVO-Probleme</div>
+                            <div class="item-desc">Die Website ist rechtlich nicht auf dem aktuellen Stand.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Section 3: What do you like -->
+            <div class="form-section">
+                <h3>3. Was gefällt Ihnen an Ihrer aktuellen Website?</h3>
+                <p>Gibt es Elemente, die Sie behalten möchten?</p>
+                
+                <label>
+                    Was soll auf jeden Fall erhalten bleiben?
+                    <textarea name="gefaellt" placeholder="z.B. Das Farbschema, bestimmte Bilder, die Texte, etc."></textarea>
+                </label>
+            </div>
+            
+            <!-- Section 4: What should change -->
+            <div class="form-section">
+                <h3>4. Was soll sich ändern?</h3>
+                <p>Was stört Sie besonders oder sollte unbedingt anders werden?</p>
+                
+                <label>
+                    Ihre Wünsche und Anmerkungen
+                    <textarea name="aendern" placeholder="z.B. Komplett neues Design, andere Struktur, bessere Bilder, etc."></textarea>
+                </label>
+            </div>
+            
+            <!-- Section 5: Goals -->
+            <div class="form-section">
+                <h3>5. Ihre Ziele</h3>
+                <p>Was möchten Sie mit dem Relaunch erreichen?</p>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="ziele" value="Mehr Besucher">
+                        <div class="item-text">
+                            <div class="item-title">Mehr Besucher</div>
+                            <div class="item-desc">Ich möchte mehr Traffic auf meiner Website.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="ziele" value="Mehr Kontaktanfragen">
+                        <div class="item-text">
+                            <div class="item-title">Mehr Kontaktanfragen</div>
+                            <div class="item-desc">Mehr qualifizierte Leads über das Kontaktformular.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="ziele" value="Besseres Image">
+                        <div class="item-text">
+                            <div class="item-title">Besseres Image</div>
+                            <div class="item-desc">Professionellerer Auftritt nach außen.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="ziele" value="Einfachere Pflege">
+                        <div class="item-text">
+                            <div class="item-title">Einfachere Pflege</div>
+                            <div class="item-desc">Ich möchte Inhalte leichter selbst ändern können.</div>
+                        </div>
+                    </label>
+                    
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="ziele" value="Wettbewerbsfähigkeit">
+                        <div class="item-text">
+                            <div class="item-title">Wettbewerbsfähigkeit</div>
+                            <div class="item-desc">Mein Auftritt soll mit der Konkurrenz mithalten können.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Section 6: Contact -->
+            <div class="form-section">
+                <h3>6. Ihre Kontaktdaten</h3>
+                <p>So können wir Sie erreichen.</p>
+                
+                <label>
+                    Name
+                    <input type="text" name="name" placeholder="Ihr Name" required>
+                </label>
+                
+                <label>
+                    E-Mail
+                    <input type="email" name="email" placeholder="ihre@email.de" required>
+                </label>
+                
+                <label>
+                    Telefon (optional)
+                    <input type="text" name="telefon" placeholder="+49 123 456789">
+                </label>
+                
+                <label>
+                    Website/ Firma (optional)
+                    <input type="text" name="firma" placeholder="Ihre Firma">
+                </label>
+            </div>
+            
+            <!-- Section 7: Budget -->
+            <div class="form-section">
+                <h3>7. Budget</h3>
+                <p>Welches Budget haben Sie für den Relaunch eingeplant?</p>
+                
+                <select name="budget" required>
+                    <option value="" disabled selected>Bitte auswählen</option>
+                    <option value="Bis 500€">Bis 500 €</option>
+                    <option value="500-1000€">500 – 1.000 €</option>
+                    <option value="1000-2000€">1.000 – 2.000 €</option>
+                    <option value="2000-5000€">2.000 – 5.000 €</option>
+                    <option value="Über 5000€">Über 5.000 €</option>
+                    <option value="Noch offen">Noch offen</option>
+                </select>
+            </div>
+            
+            <!-- Section 8: Additional -->
+            <div class="form-section">
+                <h3>8. Weitere Informationen</h3>
+                <p>Noch etwas, das wir wissen sollten?</p>
+                
+                <label>
+                    Zusätzliche Anmerkungen
+                    <textarea name="nachricht" placeholder="Alles Weitere, das für Ihr Projekt relevant ist..."></textarea>
+                </label>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="btn btn-primary">Anfrage senden</button>
+                <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+            </div>
+        </form>
+        
+        <div class="success-message" id="success-message">
+            <h2>✓ Anfrage gesendet!</h2>
+            <p>Vielen Dank für Ihre Relaunch-Anfrage. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <a href="impressum.html">Impressum</a>
+            <a href="agb.html">AGB</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="kontakt.html">Kontakt</a>
+            <p class="copyright">© 2026 quark. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Checkbox styling
+        document.querySelectorAll('.checkbox-item input').forEach(input => {
+            const item = input.closest('.checkbox-item');
+            input.addEventListener('change', () => {
+                item.classList.toggle('checked', input.checked);
+            });
+        });
+        
+        // Form submission
+        document.getElementById('relaunch-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            let emailBody = '=== NEUE RELAUNCH-ANFRAGE ===\n\n';
+            
+            emailBody += '1. AKTUELLE WEBSITE\n';
+            emailBody += 'URL: ' + formData.get('current_url') + '\n\n';
+            
+            emailBody += '2. WAS SOLL ERNEUERT WERDEN\n';
+            const wasErneuern = formData.getAll('was_erneuern');
+            emailBody += wasErneuern.length > 0 ? wasErneuern.join(', ') : 'Keine Angabe' + '\n\n';
+            
+            emailBody += '3. WAS GEFÄLLT\n';
+            emailBody += formData.get('gefaellt') || 'Keine Angabe' + '\n\n';
+            
+            emailBody += '4. WAS SOLL SICH ÄNDERN\n';
+            emailBody += formData.get('aendern') || 'Keine Angabe' + '\n\n';
+            
+            emailBody += '5. ZIELE\n';
+            const ziele = formData.getAll('ziele');
+            emailBody += ziele.length > 0 ? ziele.join(', ') : 'Keine Angabe' + '\n\n';
+            
+            emailBody += '6. KONTAKTDATEN\n';
+            emailBody += 'Name: ' + formData.get('name') + '\n';
+            emailBody += 'E-Mail: ' + formData.get('email') + '\n';
+            emailBody += 'Telefon: ' + (formData.get('telefon') || 'Nicht angegeben') + '\n';
+            emailBody += 'Firma: ' + (formData.get('firma') || 'Nicht angegeben') + '\n\n';
+            
+            emailBody += '7. BUDGET\n';
+            emailBody += formData.get('budget') + '\n\n';
+            
+            emailBody += '8. WEITERE INFORMATIONEN\n';
+            emailBody += formData.get('nachricht') || 'Keine Angabe' + '\n';
+            
+            const subject = encodeURIComponent('Neue Relaunch-Anfrage - quark');
+            const body = encodeURIComponent(emailBody);
+            window.location.href = 'mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body;
+            
+            this.style.display = 'none';
+            document.getElementById('success-message').classList.add('show');
+        });
+    </script>
+</body>
+</html>
