@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website-Bau – schnell &amp; professionell | quark</title>
+    <title>Website-Bau - schnell &amp; professionell | quark</title>
     <style>
         * {
             margin: 0;
@@ -46,7 +46,7 @@
             text-decoration: none;
             color: inherit;
         }
-        
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -89,7 +89,7 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
-        
+
         /* Navigation */
         nav {
             background: rgba(255, 255, 255, 0.9);
@@ -181,7 +181,7 @@
             color: var(--primary);
             font-weight: 600;
         }
-        
+
         /* Burger Menu Button */
         .burger {
             display: none;
@@ -212,7 +212,7 @@
         .burger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(6px, -6px);
         }
-        
+
         /* Mobile Menu Overlay */
         .mobile-menu {
             display: none;
@@ -252,7 +252,7 @@
             color: var(--primary);
             font-weight: 700;
         }
-        
+
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -337,7 +337,7 @@
             font-size: 0.85rem;
             border-radius: 8px;
         }
-        
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #2563eb 60%, #0ea5e9 100%);
@@ -449,7 +449,7 @@
         .hero .btn-large {
             animation: fadeInUp 0.8s ease 0.4s both;
         }
-        
+
         /* Sections */
         section {
             padding: 100px 0;
@@ -469,7 +469,7 @@
             margin: 0 auto 60px;
             font-size: 1.15rem;
         }
-        
+
         /* Choice Section */
         .choice {
             background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
@@ -530,7 +530,7 @@
             margin-bottom: 28px;
             font-size: 1.05rem;
         }
-        
+
         /* Pakete */
         .pakete {
             background: var(--white);
@@ -667,7 +667,7 @@
         .pricing-buttons {
             display: none;
         }
-        
+
         /* Wartung */
         .wartung {
             background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
@@ -786,7 +786,7 @@
         .maintenance-card .features-preview {
             display: none;
         }
-        
+
         .cta-box {
             text-align: center;
             margin-top: 60px;
@@ -817,7 +817,7 @@
             margin-bottom: 24px;
             font-size: 1.1rem;
         }
-        
+
         /* Prozess */
         .prozess {
             background: var(--white);
@@ -880,7 +880,7 @@
             font-size: 0.9rem;
             line-height: 1.5;
         }
-        
+
         /* Warum */
         .warum {
             background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
@@ -895,7 +895,42 @@
             font-size: 1.2rem;
             line-height: 1.9;
         }
-        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            max-width: 1050px;
+            margin: 50px auto 0;
+        }
+        .why-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px 28px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+        .why-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 16px 40px rgba(30, 64, 175, 0.1);
+            transform: translateY(-6px);
+        }
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        .why-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        .why-desc {
+            font-size: 0.92rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
         /* FAQ */
         .faq {
             background: var(--white);
@@ -932,7 +967,7 @@
             font-size: 0.95rem;
             line-height: 1.7;
         }
-        
+
         /* CTA */
         .cta-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -977,7 +1012,7 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
         }
-        
+
         /* Footer */
         footer {
             background: var(--gray-900);
@@ -1020,7 +1055,7 @@
             font-size: 0.9rem;
             color: var(--gray-500);
         }
-        
+
         /* Skip Link */
         .skip-link {
             position: absolute;
@@ -1035,13 +1070,13 @@
         .skip-link:focus {
             top: 0;
         }
-        
+
         /* Focus States */
         :focus-visible {
             outline: 3px solid var(--accent);
             outline-offset: 3px;
         }
-        
+
         /* Mobile */
         @media (max-width: 900px) {
             .choice-grid {
@@ -1119,7 +1154,7 @@
                 font-size: 1rem;
                 margin-bottom: 40px;
             }
-            
+
             /* Mobile Choice Cards */
             .choice-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1144,7 +1179,7 @@
                 padding: 12px 14px;
                 font-size: 0.75rem;
             }
-            
+
             /* Mobile Pricing */
             .pricing-grid {
                 grid-template-columns: 0.8fr 1.2fr 0.8fr;
@@ -1218,7 +1253,7 @@
                 color: white;
                 border: none;
             }
-            
+
             /* Mobile Maintenance */
             .maintenance-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1267,7 +1302,7 @@
             .maintenance-card.no-expand .features-preview {
                 display: block !important;
             }
-            
+
             /* Mobile Process */
             .process-grid {
                 grid-template-columns: 1fr;
@@ -1293,7 +1328,7 @@
             .process-step p {
                 font-size: 0.85rem;
             }
-            
+
             /* Mobile FAQ */
             .faq-item {
                 padding: 24px 20px;
@@ -1304,7 +1339,7 @@
             .faq-item p {
                 font-size: 0.9rem;
             }
-            
+
             /* Mobile CTA */
             .cta-section {
                 padding: 80px 0;
@@ -1319,7 +1354,7 @@
                 padding: 16px 32px;
                 font-size: 1rem;
             }
-            
+
             /* Mobile Footer */
             footer {
                 padding: 40px 0;
@@ -1335,7 +1370,7 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-    
+
     <!-- Navigation -->
     <nav role="navigation" aria-label="Hauptnavigation">
         <div class="container">
@@ -1349,7 +1384,7 @@
                 <a href="#wartung">Wartung</a>
                 <a href="#prozess">Prozess</a>
                 <a href="#faq">FAQ</a>
-                <a href="kontakt.html" class="highlight-link">Kontakt</a>
+                <a href="mailto:pascalroe@proton.me" class="highlight-link">Kontakt</a>
             </div>
             <button class="burger" aria-label="Menü öffnen" aria-expanded="false">
                 <span></span>
@@ -1358,7 +1393,7 @@
             </button>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobile-menu">
         <a href="#auswahl" class="mobile-link">Auswahl</a>
@@ -1366,16 +1401,16 @@
         <a href="#wartung" class="mobile-link">Wartung</a>
         <a href="#prozess" class="mobile-link">Prozess</a>
         <a href="faq.html" class="mobile-link">FAQ</a>
-        <a href="kontakt.html" class="mobile-link">Kontakt</a>
+        <a href="mailto:pascalroe@proton.me" class="mobile-link">Kontakt</a>
     </div>
-    
+
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1>Website-Bau – schnell &amp; professionell</h1>
-            <p class="hero-subtitle">Moderne Websites zu fairen Preisen – von der schlanken Homepage bis zum vollständigen Webauftritt.</p>
+            <h1>Website-Bau - schnell &amp; professionell</h1>
+            <p class="hero-subtitle">Moderne Websites zu fairen Preisen - von der schlanken Homepage bis zum vollständigen Webauftritt.</p>
             <p class="hero-description">Mit unserer eigenen KI-Technologie setzen wir Projekte effizient um und kombinieren das mit persönlicher Betreuung für beste Ergebnisse.</p>
-            
+
             <ul class="hero-features">
                 <li>Einseitige Website (One-Pager)</li>
                 <li>Startseite mit allen wichtigen Infos</li>
@@ -1387,25 +1422,25 @@
                 <li>DSGVO-konform (ohne Cookies, ohne Tracking)</li>
                 <li>Übergabe aller Dateien</li>
             </ul>
-            
-            <a href="kontakt.html" class="btn btn-large">Jetzt anfragen</a>
+
+            <a href="mailto:pascalroe@proton.me" class="btn btn-large">Jetzt anfragen</a>
         </div>
     </header>
-    
+
     <!-- Choice Section -->
     <section class="choice" id="auswahl" aria-labelledby="choice-title">
         <div class="container">
             <h2 id="choice-title" class="section-title">Was können wir für Sie tun?</h2>
             <p class="section-subtitle">Wählen Sie die Option, die am besten zu Ihrer Situation passt.</p>
-            
+
             <div class="choice-grid">
                 <article class="choice-card animate-on-scroll">
                     <div class="icon">🆕</div>
                     <h3>Neue Webseite erstellen</h3>
-                    <p>Sie haben noch keine Webseite? Wir erstellen eine komplett neue, maßgeschneiderte Lösung für Sie – von Grund auf.</p>
+                    <p>Sie haben noch keine Webseite? Wir erstellen eine komplett neue, maßgeschneiderte Lösung für Sie - von Grund auf.</p>
                     <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
                 </article>
-                
+
                 <article class="choice-card animate-on-scroll delay-1">
                     <div class="icon">🔄</div>
                     <h3>Webseite erneuern (Relaunch)</h3>
@@ -1415,13 +1450,13 @@
             </div>
         </div>
     </section>
-    
+
     <main id="main-content">
         <!-- Pakete Section -->
         <section class="pakete" id="pakete" aria-labelledby="pakete-title">
             <div class="container">
                 <h2 id="pakete-title" class="section-title">Pakete & Preise</h2>
-                
+
                 <div class="pricing-grid">
                     <!-- Basis -->
                     <article class="pricing-card animate-on-scroll">
@@ -1443,14 +1478,14 @@
                             <li>Übergabe aller Dateien</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
-                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm">Anfragen</a>
                         </div>
                     </article>
-                    
+
                     <!-- Standard -->
                     <article class="pricing-card featured animate-on-scroll delay-1">
                         <div class="pricing-label">Beliebt</div>
@@ -1463,7 +1498,7 @@
                         </ul>
                         <ul class="pricing-features">
                             <li>Alles aus Basis</li>
-                            <li>BIS zu 5 Unterseiten</li>
+                            <li>Bis zu 5 Unterseiten</li>
                             <li>Bildergalerie für Projekte & Team</li>
                             <li>Vorher-Nachher-Bereich für Referenzen</li>
                             <li>Google Maps (datenschutzkonform)</li>
@@ -1473,14 +1508,14 @@
                             <li>2 Revisionsrunden inklusive</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn">Mehr erfahren</a>
-                            <a href="kontakt.html" class="btn btn-sm btn-accent">Anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm btn-accent">Anfragen</a>
                         </div>
                     </article>
-                    
+
                     <!-- Premium -->
                     <article class="pricing-card animate-on-scroll delay-2">
                         <div class="pricing-label">Premium</div>
@@ -1502,22 +1537,22 @@
                             <li>3 Revisionsrunden inklusive</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
-                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm">Anfragen</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
-        
+
         <!-- Wartung Section -->
         <section class="wartung" id="wartung" aria-labelledby="wartung-title">
             <div class="container">
                 <h2 id="wartung-title" class="section-title">Wartung & Betreuung</h2>
-                
+
                 <div class="wartung-subsection">
                     <h3 class="subsection-title">Wartung & Hosting</h3>
                     <div class="maintenance-grid">
@@ -1538,7 +1573,7 @@
                             </ul>
                             <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
-                        
+
                         <article class="maintenance-card animate-on-scroll delay-1">
                             <h4>Pflege</h4>
                             <div class="price">29€ <span>/Monat</span></div>
@@ -1555,7 +1590,7 @@
                             </ul>
                             <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
-                        
+
                         <article class="maintenance-card animate-on-scroll delay-2">
                             <h4>Aktiv</h4>
                             <div class="price">59€ <span>/Monat</span></div>
@@ -1575,80 +1610,45 @@
                         </article>
                     </div>
                 </div>
-                
-                <div class="wartung-subsection">
-                    <h3 class="subsection-title">Eigenverantwortliches Hosting</h3>
-                    <div class="maintenance-grid">
-                        <article class="maintenance-card alt no-expand animate-on-scroll">
-                            <h4>Self-Service</h4>
-                            <div class="price">0€ <span>/Monat</span></div>
-                            <ul>
-                                <li>Kein Hosting, keine Pflege</li>
-                                <li>Sie kümmern sich selbst</li>
-                                <li>Änderungen auf Anfrage</li>
-                            </ul>
-                        </article>
-                        
-                        <article class="maintenance-card alt no-expand animate-on-scroll delay-1">
-                            <h4>Domain & Hosting</h4>
-                            <div class="price">19–24€ <span>/Monat</span></div>
-                            <ul>
-                                <li>Jährlich (19€) oder monatlich (24€)</li>
-                                <li>Inklusive 2 kleine Änderungen pro Monat</li>
-                                <li>Umsetzung innerhalb 48h</li>
-                            </ul>
-                        </article>
-                        
-                        <article class="maintenance-card alt no-expand animate-on-scroll delay-2">
-                            <h4>Ultimative Betreuung</h4>
-                            <div class="price">auf Anfrage</div>
-                            <ul>
-                                <li>Premium-Paket inklusive</li>
-                                <li>Bis zu 8 Änderungen pro Monat</li>
-                                <li>Alles aus einer Hand</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-                
+
                 <div class="cta-box animate-on-scroll">
                     <h3>Fragen zu den Paketen?</h3>
-                    <p>Schreiben Sie uns – wir beraten Sie gerne und finden das perfekte Paket für Sie.</p>
-                    <a href="kontakt.html" class="btn">Kostenlos beraten lassen</a>
+                    <p>Schreiben Sie uns - wir beraten Sie gerne und finden das perfekte Paket für Sie.</p>
+                    <a href="mailto:pascalroe@proton.me" class="btn">Kostenlos beraten lassen</a>
                 </div>
             </div>
         </section>
-        
+
         <!-- Prozess Section -->
         <section class="prozess" id="prozess" aria-labelledby="prozess-title">
             <div class="container">
                 <h2 id="prozess-title" class="section-title">So arbeiten wir zusammen</h2>
-                
+
                 <div class="process-grid">
                     <article class="process-step animate-on-scroll">
                         <div class="number">1</div>
                         <h4>Fragebogen ausfüllen</h4>
-                        <p>Sie füllen unseren Fragebogen aus – ganz bequem online. So lernen wir Ihr Unternehmen und Ihre Wünsche kennen.</p>
+                        <p>Sie füllen unseren Fragebogen aus - ganz bequem online. So lernen wir Ihr Unternehmen und Ihre Wünsche kennen.</p>
                     </article>
-                    
+
                     <article class="process-step animate-on-scroll delay-1">
                         <div class="number">2</div>
                         <h4>Erster Entwurf (kostenlos)</h4>
                         <p>Basierend auf Ihren Angaben erstellen wir einen ersten Entwurf. Sie sehen sofort, wie Ihre Website aussehen wird.</p>
                     </article>
-                    
+
                     <article class="process-step animate-on-scroll delay-2">
                         <div class="number">3</div>
                         <h4>Feedback & Feinschliff</h4>
-                        <p>Sie geben Feedback, wir optimieren. In bis zu 3 Revisionsrunden (je nach Paket) perfectionieren wir alles.</p>
+                        <p>Sie geben Feedback, wir optimieren. In bis zu 3 Revisionsrunden (je nach Paket) perfektionieren wir alles.</p>
                     </article>
-                    
+
                     <article class="process-step animate-on-scroll delay-3">
                         <div class="number">4</div>
                         <h4>Final Review</h4>
                         <p>Wir senden Ihnen alle Bilder und Texte zur Durchsicht. Last but not least: Ihre finale Freigabe.</p>
                     </article>
-                    
+
                     <article class="process-step animate-on-scroll delay-4">
                         <div class="number">5</div>
                         <h4>Live-Schaltung</h4>
@@ -1657,45 +1657,109 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Warum Section -->
-        <section class="warum animate-on-scroll" aria-labelledby="warum-title">
+
+        <!-- Self-Service Section -->
+        <section class="wartung" id="self-service" aria-labelledby="selfservice-title">
             <div class="container">
-                <div class="warum-content">
-                    <h2 id="warum-title" class="section-title">Warum wir?</h2>
-                    <p>Da wir tiefes Know-How im Websitebau und bei KI-Technologien haben. Unser größter Vorteil: Wir können unsere Kosten dank eigener KI begrenzen und diese Ersparnis an Sie weitergeben. Außerdem arbeiten wir effizient und ohne unnötigen Overhead.</p>
+                <h2 id="selfservice-title" class="section-title">Eigenregie & Hosting-Partner</h2>
+                <p class="section-subtitle">Sie bevorzugen den Do-it-yourself-Ansatz oder möchten nur bestimmte Leistungen? Wir haben passende Optionen.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; max-width: 900px; margin: 50px auto 0;">
+                    
+                    <article class="maintenance-card alt animate-on-scroll">
+                        <h4>🛠️ Self-Service</h4>
+                        <div class="price">0€ <span>/Monat</span></div>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Sie kümmern sich komplett selbst – wir liefern nur die Dateien.</p>
+                        <ul>
+                            <li>Alle Website-Dateien werden übergeben</li>
+                            <li>Sie wählen Ihren eigenen Hoster</li>
+                            <li>Änderungen auf Anfrage (nach Aufwand)</li>
+                            <li>Support nur per E-Mail</li>
+                        </ul>
+                        <a href="mailto:pascalroe@proton.me?subject=Self-Service%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Dateien anfragen</a>
+                    </article>
+                    
+                    <article class="maintenance-card alt animate-on-scroll delay-1">
+                        <h4>🌐 Hosting-Partner</h4>
+                        <div class="price">19–24€ <span>/Monat</span></div>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Wir hosten für Sie – inklusive kleinerer Änderungen.</p>
+                        <ul>
+                            <li>Jährlich (19€) oder monatlich (24€)</li>
+                            <li>Cloudflare-Hosting inklusive</li>
+                            <li>Bis zu 2 kleine Änderungen pro Monat</li>
+                            <li>Umsetzung innerhalb 48h</li>
+                        </ul>
+                        <a href="mailto:pascalroe@proton.me?subject=Hosting-Partner%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Hosting starten</a>
+                    </article>
+                    
+                </div>
+                
+                <div style="text-align: center; margin-top: 48px; padding: 36px; background: var(--gray-50); border-radius: 20px; border: 1px solid var(--gray-200);">
+                    <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gray-900); margin-bottom: 12px;">Ultimative Betreuung</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 16px;">Premium-Paket inklusive + bis zu 8 Änderungen pro Monat – alles aus einer Hand.</p>
+                    <a href="mailto:pascalroe@proton.me?subject=Ultimative%20Betreuung%20Anfrage" class="btn btn-large">Auf Anfrage →</a>
                 </div>
             </div>
         </section>
         
+        <!-- Warum Section -->
+        <section class="warum animate-on-scroll" aria-labelledby="warum-title">
+            <div class="container">
+                <h2 id="warum-title" class="section-title">Warum wir?</h2>
+                <p class="section-subtitle">Keine Massenabfertigung. Jedes Projekt wird individuell geplant und umgesetzt.</p>
+                <div class="why-grid">
+                    <div class="why-card animate-on-scroll">
+                        <div class="why-icon">⚡</div>
+                        <div class="why-title">KI-gestützte Effizienz</div>
+                        <div class="why-desc">Dank eigener KI-Technologie erstellen wir Websites deutlich schneller als herkömmliche Agenturen – und geben die Ersparnis an Sie weiter.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-1">
+                        <div class="why-icon">🔒</div>
+                        <div class="why-title">Volle Kontrolle</div>
+                        <div class="why-desc">Sie erhalten alle Dateien. Keine Lock-in-Effekte, keine Abhängigkeit. Die Website gehört Ihnen – heute und in Zukunft.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-2">
+                        <div class="why-icon">🌱</div>
+                        <div class="why-title">Nachhaltig gedacht</div>
+                        <div class="why-desc">Schnelle Ladezeiten, schlanker Code und energieeffizientes Hosting – gut für Ihre Besucher und die Umwelt.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-3">
+                        <div class="why-icon">💬</div>
+                        <div class="why-title">Direkte Kommunikation</div>
+                        <div class="why-desc">Sie sprechen direkt mit uns – kein Umweg, kein Account-Manager dazwischen. Kurze Wege, schnelle Antworten.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ Section -->
         <section class="faq" id="faq" aria-labelledby="faq-title">
             <div class="container">
                 <h2 id="faq-title" class="section-title">Häufige Fragen</h2>
-                
+
                 <div class="faq-grid">
                     <article class="faq-item animate-on-scroll">
                         <h4>Wie lange dauert der Prozess?</h4>
                         <p>Die Dauer hängt vom gewählten Paket und Ihren Rückmeldezeiten ab. Kleinere Websites (Basis) sind oft schon nach 1-2 Wochen live. Umfassendere Projekte (Premium) planen wir mit 3-4 Wochen ein. Durch unsere KI-Unterstützung sind wir aber deutlich schneller als herkömmliche Agenturen.</p>
                     </article>
-                    
+
                     <article class="faq-item animate-on-scroll delay-1">
                         <h4>Kann ich später Änderungen vornehmen lassen?</h4>
-                        <p>Kein Problem! Sie können jederzeit Wartungspakete buchen (ab 19€/Monat) oder einzelne Änderungen beauftragen. Die Dateien gehören Ihnen – Sie haben jederzeit volle Kontrolle über Ihre Website.</p>
+                        <p>Kein Problem! Sie können jederzeit Wartungspakete buchen (ab 19€/Monat) oder einzelne Änderungen beauftragen. Die Dateien gehören Ihnen - Sie haben jederzeit volle Kontrolle über Ihre Website.</p>
                     </article>
-                    
+
                     <article class="faq-item animate-on-scroll delay-2">
                         <h4>Sind die Websites mobil-optimiert?</h4>
-                        <p>Absolut! Alle unsere Websites sind von Grund auf "responsive" – sie passen sich automatisch an mobile Geräte, Tablets und Desktops an. Das ist heute Standard und wichtig für Google-Rankings.</p>
+                        <p>Absolut! Alle unsere Websites sind von Grund auf "responsive" - sie passen sich automatisch an mobile Geräte, Tablets und Desktops an. Das ist heute Standard und wichtig für Google-Rankings.</p>
                     </article>
                 </div>
-                
+
                 <div style="text-align: center; margin-top: 40px;">
                     <a href="faq.html" class="btn btn-outline animate-on-scroll">Alle FAQs ansehen →</a>
                 </div>
             </div>
         </section>
-        
+
         <!-- CTA Section -->
         <section class="cta-section" id="kontakt" aria-labelledby="cta-title">
             <div class="container">
@@ -1705,18 +1769,18 @@
             </div>
         </section>
     </main>
-    
+
     <!-- Footer -->
     <footer role="contentinfo">
         <div class="container">
             <a href="impressum.html">Impressum</a>
             <a href="agb.html">AGB</a>
             <a href="datenschutz.html">Datenschutz</a>
-            <a href="kontakt.html">Kontakt</a>
+            <a href="mailto:pascalroe@proton.me">Kontakt</a>
             <p class="copyright">&copy; 2026 quark. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
-    
+
     <script>
         // Scroll animations
         const animateElements = document.querySelectorAll('.animate-on-scroll');
@@ -1727,36 +1791,36 @@
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        
+
         animateElements.forEach(el => observer.observe(el));
-        
+
         // Hide navbar on scroll down, show on scroll up
         let lastScrollY = window.scrollY;
         const nav = document.querySelector('nav');
-        
+
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            
+
             if (currentScrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
-            
+
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
                 nav.classList.add('hidden');
             } else {
                 nav.classList.remove('hidden');
             }
-            
+
             lastScrollY = currentScrollY;
         });
-        
+
         // Burger Menu Toggle
         const burger = document.querySelector('.burger');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-        
+
         burger.addEventListener('click', () => {
             const isOpen = burger.classList.toggle('active');
             mobileMenu.classList.toggle('open');
@@ -1764,7 +1828,7 @@
             burger.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
             document.body.style.overflow = isOpen ? 'hidden' : '';
         });
-        
+
         // Close menu when link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1774,13 +1838,13 @@
                 document.body.style.overflow = '';
             });
         });
-        
+
         // Toggle Details for Maintenance Cards
         function toggleDetails(btn) {
             const card = btn.closest('.maintenance-card');
             const fullList = card.querySelector('ul:not(.features-preview)');
             const previewList = card.querySelector('.features-preview');
-            
+
             if (fullList.style.display === 'block') {
                 fullList.style.display = 'none';
                 previewList.style.display = 'block';
