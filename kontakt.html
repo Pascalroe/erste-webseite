@@ -47,7 +47,7 @@
         
         /* Navigation */
         nav {
-            background: var(--gray-900);
+            background: var(--white);
             padding: 16px 0;
             position: sticky;
             top: 0;
@@ -63,20 +63,20 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--accent-light);
+            color: var(--primary);
         }
         .nav-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
             margin-left: 32px;
             font-weight: 500;
             transition: color 0.2s;
         }
         .nav-links a:hover,
         .nav-links a:focus {
-            color: var(--accent-light);
+            color: var(--primary);
         }
         .nav-links a.back {
-            color: var(--accent-light);
+            color: var(--primary);
         }
         
         /* Main Content */
@@ -92,14 +92,14 @@
         }
         .page-subtitle {
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
             font-size: 1.15rem;
             margin-bottom: 50px;
         }
         
         /* Form */
         .form-card {
-            background: var(--gray-900);
+            background: var(--white);
             border-radius: 16px;
             padding: 48px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
@@ -122,7 +122,7 @@
             margin-bottom: 8px;
         }
         .form-section > p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
             margin-bottom: 24px;
             font-size: 0.95rem;
         }
@@ -155,7 +155,7 @@
             font-size: 1rem;
             font-family: inherit;
             color: var(--gray-800);
-            background: var(--gray-900);
+            background: var(--white);
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         input:focus,
@@ -194,7 +194,7 @@
             background: var(--gray-100);
         }
         .option-item.selected {
-            border-color: var(--accent-light);
+            border-color: var(--primary);
             background: rgba(30, 64, 175, 0.05);
         }
         .option-item input {
@@ -213,7 +213,7 @@
         }
         .option-item .option-desc {
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
             margin-top: 2px;
         }
         
@@ -226,7 +226,7 @@
             justify-content: space-between;
             margin-bottom: 12px;
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
         }
         input[type="range"] {
             width: 100%;
@@ -242,7 +242,7 @@
             -webkit-appearance: none;
             width: 28px;
             height: 28px;
-            background: var(--gray-900);
+            background: var(--white);
             border: 3px solid var(--primary);
             border-radius: 50%;
             cursor: pointer;
@@ -255,7 +255,7 @@
         input[type="range"]::-moz-range-thumb {
             width: 28px;
             height: 28px;
-            background: var(--gray-900);
+            background: var(--white);
             border: 3px solid var(--primary);
             border-radius: 50%;
             cursor: pointer;
@@ -308,7 +308,7 @@
             margin-bottom: 12px;
         }
         .success-message p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-600);
         }
         
         /* Skip Link */
@@ -635,7 +635,7 @@
                                 </div>
                                 <input type="range" id="dringlichkeit" name="dringlichkeit" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
                                 <div style="text-align: center; margin-top: 10px;">
-                                    <output id="dringlichkeit-val" style="font-size: 2rem; font-weight: 800; color: var(--accent-light);">5</output>
+                                    <output id="dringlichkeit-val" style="font-size: 2rem; font-weight: 800; color: var(--primary);">5</output>
                                     <span style="font-size: 0.85rem; color: var(--gray-500); margin-left: 6px;">/ 10</span>
                                 </div>
                                 <div id="dringlichkeit-desc" style="text-align: center; margin-top: 4px; font-size: 0.85rem; color: var(--gray-500); min-height: 20px;">Mittlere Dringlichkeit</div>
@@ -666,9 +666,9 @@
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 40px; padding: 32px; background: var(--gray-900); border-radius: 12px; border: 1px solid var(--gray-200);">
-                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 12px;">Oder schreiben Sie uns direkt:</p>
-                <a href="mailto:pascalroe@proton.me" style="font-size: 1.25rem; font-weight: 600; color: var(--accent-light);">pascalroe@proton.me</a>
+            <div style="text-align: center; margin-top: 40px; padding: 32px; background: var(--white); border-radius: 12px; border: 1px solid var(--gray-200);">
+                <p style="color: var(--gray-600); margin-bottom: 12px;">Oder schreiben Sie uns direkt:</p>
+                <a href="mailto:pascalroe@proton.me" style="font-size: 1.25rem; font-weight: 600; color: var(--primary);">pascalroe@proton.me</a>
             </div>
         </div>
     </main>
