@@ -340,114 +340,116 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #2563eb 60%, #0ea5e9 100%);
-            background-size: 200% 200%;
-            animation: gradient-shift 15s ease infinite;
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
             color: var(--white);
-            padding: 140px 0 100px;
+            padding: 160px 0 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         .hero::before {
-            content: "";
+            content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
+            top: -30%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 65%);
             border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            animation: float 9s ease-in-out infinite;
         }
         .hero::after {
-            content: "";
+            content: '';
             position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%);
+            bottom: -20%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 65%);
             border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
+            animation: float 11s ease-in-out infinite reverse;
         }
         .hero .container {
             position: relative;
             z-index: 1;
         }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.15);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: #67e8f9;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: fadeInUp 0.6s ease;
+        }
         .hero h1 {
-            font-size: 3.75rem;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.03em;
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 0.6s ease 0.05s both;
         }
-        .hero h1 span {
-            background: linear-gradient(90deg, #60a5fa, #22d3ee, #67e8f9);
+        .hero h1 .accent {
+            background: linear-gradient(90deg, #38bdf8, #22d3ee, #67e8f9);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 3s ease infinite;
         }
         .hero-subtitle {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 0 auto 12px;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            max-width: 680px;
+            margin: 0 auto 16px;
             line-height: 1.6;
-            color: #e2e8f0;
-            animation: fadeInUp 0.8s ease 0.1s both;
+            color: #cbd5e1;
+            animation: fadeInUp 0.6s ease 0.1s both;
         }
         .hero-description {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-            color: #94a3b8;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            display: none;
         }
         .hero-features {
-            list-style: none;
-            max-width: 600px;
-            margin: 0 auto 48px;
-            text-align: left;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px 32px;
-            animation: fadeInUp 0.8s ease 0.3s both;
+            display: none;
         }
-        .hero-features li {
-            padding: 12px 0;
-            padding-left: 36px;
-            position: relative;
-            font-size: 1rem;
-            color: #cbd5e1;
-            transition: transform 0.3s ease;
-        }
-        .hero-features li:hover {
-            transform: translateX(5px);
-            color: #e2e8f0;
-        }
-        .hero-features li::before {
-            content: "✓";
-            color: var(--accent-light);
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            font-size: 1.2rem;
-            animation: pulse-glow 2s ease-in-out infinite;
-            background: rgba(34, 211, 238, 0.15);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+        .hero-trust {
             display: flex;
-            align-items: center;
             justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.6s ease 0.15s both;
+        }
+        .trust-item {
+            text-align: center;
+        }
+        .trust-item .num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: -0.03em;
+            display: block;
+        }
+        .trust-item .label {
             font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.2s both;
         }
         .hero .btn-large {
-            animation: fadeInUp 0.8s ease 0.4s both;
+            animation: none;
         }
 
         /* Sections */
@@ -472,25 +474,26 @@
 
         /* Choice Section */
         .choice {
-            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            background: var(--white);
             padding: 100px 0;
         }
         .choice-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 950px;
+            gap: 32px;
+            max-width: 1100px;
             margin: 60px auto 0;
         }
         .choice-card {
-            background: var(--white);
+            background: var(--gray-50);
             border-radius: 24px;
-            padding: 48px 40px;
-            text-align: center;
+            padding: 52px 44px;
+            text-align: left;
             border: 1px solid var(--gray-200);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .choice-card::before {
             content: '';
@@ -502,33 +505,48 @@
             background: linear-gradient(90deg, var(--primary), var(--accent));
             transform: scaleX(0);
             transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
         }
         .choice-card:hover::before {
             transform: scaleX(1);
         }
         .choice-card:hover {
             border-color: transparent;
-            box-shadow: 0 25px 60px rgba(30, 64, 175, 0.15);
-            transform: translateY(-12px);
+            box-shadow: 0 24px 60px rgba(30, 64, 175, 0.12);
+            transform: translateY(-8px);
         }
-        .choice-card .icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
+        .choice-card .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-shrink: 0;
             transition: transform 0.4s ease;
         }
-        .choice-card:hover .icon {
-            transform: scale(1.1) rotate(-5deg);
+        .choice-card:hover .card-icon {
+            transform: scale(1.08) rotate(-3deg);
+        }
+        .choice-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
         }
         .choice-card h3 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--gray-900);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .choice-card p {
             color: var(--gray-600);
             margin-bottom: 28px;
-            font-size: 1.05rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            flex-grow: 1;
         }
 
         /* Pakete */
@@ -1081,7 +1099,41 @@
         @media (max-width: 900px) {
             .choice-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
                 max-width: 500px;
+            }
+            .choice-card {
+                padding: 32px 24px;
+                text-align: left;
+            }
+            .choice-card .card-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 16px;
+            }
+            .choice-card .card-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            .choice-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            .choice-card p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            .choice-card .btn-large {
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
+            }
+            .hero-trust {
+                gap: 20px;
+                margin-bottom: 32px;
+            }
+            .trust-item .num {
+                font-size: 1.5rem;
             }
             .pricing-grid,
             .maintenance-grid {
@@ -1161,31 +1213,13 @@
                 gap: 16px;
                 max-width: 100%;
             }
-            .choice-card {
-                padding: 24px 16px;
-            }
-            .choice-card .icon {
-                font-size: 2.5rem;
-                margin-bottom: 12px;
-            }
-            .choice-card h3 {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
-            }
-            .choice-card p {
-                display: none;
-            }
-            .choice-card .btn {
-                padding: 12px 14px;
-                font-size: 0.75rem;
-            }
-
-            /* Mobile Pricing */
+/* Mobile Pricing */
             .pricing-grid {
-                grid-template-columns: 0.8fr 1.2fr 0.8fr;
-                gap: 8px;
-                max-width: 100%;
-                align-items: start;
+                grid-template-columns: 1fr;
+                gap: 16px;
+                max-width: 450px;
+                margin: 0 auto;
+                align-items: stretch;
             }
             .pricing-card {
                 padding: 16px 10px;
@@ -1407,23 +1441,33 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1>Website-Bau - schnell &amp; professionell</h1>
-            <p class="hero-subtitle">Moderne Websites zu fairen Preisen - von der schlanken Homepage bis zum vollständigen Webauftritt.</p>
-            <p class="hero-description">Mit unserer eigenen KI-Technologie setzen wir Projekte effizient um und kombinieren das mit persönlicher Betreuung für beste Ergebnisse.</p>
+            <div class="hero-badge">KI-gestützter Website-Bau</div>
+            <h1>Ihre Website. <span class="accent">Schnell. Professionell. Bezahlbar.</span></h1>
+            <p class="hero-subtitle">Für Selbstständige und kleine Unternehmen, die online überzeugen wollen - ohne Agentur-Preise und ohne Monate zu warten.</p>
 
-            <ul class="hero-features">
-                <li>Einseitige Website (One-Pager)</li>
-                <li>Startseite mit allen wichtigen Infos</li>
-                <li>Responsive Design (Mobile/Tablet/Desktop)</li>
-                <li>Kontaktformular mit E-Mail-Weiterleitung</li>
-                <li>Google-Optimierung (Meta-Tags, Sitemap)</li>
-                <li>Eigene Domain-Anbindung</li>
-                <li>Hosting auf Cloudflare Pages (kostenlos)</li>
-                <li>DSGVO-konform (ohne Cookies, ohne Tracking)</li>
-                <li>Übergabe aller Dateien</li>
-            </ul>
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <span class="num">1-2 Wochen</span>
+                    <span class="label">bis Live</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">100%</span>
+                    <span class="label">DSGVO-konform</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">3×</span>
+                    <span class="label">Revisionsrunden</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">100%</span>
+                    <span class="label">Ihr Eigentum</span>
+                </div>
+            </div>
 
-            <a href="mailto:pascalroe@proton.me" class="btn btn-large">Jetzt anfragen</a>
+            <div class="hero-actions">
+                <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
+                <a href="#auswahl" class="btn btn-large btn-outline" style="color: white; border: 2px solid rgba(255,255,255,0.35); background: transparent;">Mehr erfahren</a>
+            </div>
         </div>
     </header>
 
@@ -1435,14 +1479,22 @@
 
             <div class="choice-grid">
                 <article class="choice-card animate-on-scroll">
-                    <div class="icon">🆕</div>
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
                     <h3>Neue Webseite erstellen</h3>
                     <p>Sie haben noch keine Webseite? Wir erstellen eine komplett neue, maßgeschneiderte Lösung für Sie - von Grund auf.</p>
                     <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
                 </article>
 
                 <article class="choice-card animate-on-scroll delay-1">
-                    <div class="icon">🔄</div>
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </div>
                     <h3>Webseite erneuern (Relaunch)</h3>
                     <p>Sie haben bereits eine Webseite, die nicht mehr aktuell ist? Wir modernisieren und relaunchen sie für Sie.</p>
                     <a href="relaunch.html" class="btn btn-large btn-outline">Kostenlose Einschätzung</a>
@@ -1478,11 +1530,11 @@
                             <li>Übergabe aller Dateien</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
-                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm">Anfragen</a>
+                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
                         </div>
                     </article>
 
@@ -1508,7 +1560,7 @@
                             <li>2 Revisionsrunden inklusive</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn">Mehr erfahren</a>
@@ -1537,11 +1589,11 @@
                             <li>3 Revisionsrunden inklusive</li>
                         </ul>
                         <div class="pricing-cta">
-                            <a href="mailto:pascalroe@proton.me" class="btn">Jetzt anfragen</a>
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
-                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm">Anfragen</a>
+                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
                         </div>
                     </article>
                 </div>
@@ -1614,7 +1666,7 @@
                 <div class="cta-box animate-on-scroll">
                     <h3>Fragen zu den Paketen?</h3>
                     <p>Schreiben Sie uns - wir beraten Sie gerne und finden das perfekte Paket für Sie.</p>
-                    <a href="mailto:pascalroe@proton.me" class="btn">Kostenlos beraten lassen</a>
+                    <a href="kontakt.html" class="btn">Kostenlos beraten lassen</a>
                 </div>
             </div>
         </section>
@@ -1663,13 +1715,13 @@
             <div class="container">
                 <h2 id="selfservice-title" class="section-title">Eigenregie & Hosting-Partner</h2>
                 <p class="section-subtitle">Sie bevorzugen den Do-it-yourself-Ansatz oder möchten nur bestimmte Leistungen? Wir haben passende Optionen.</p>
-                
+
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; max-width: 900px; margin: 50px auto 0;">
-                    
+
                     <article class="maintenance-card alt animate-on-scroll">
                         <h4>🛠️ Self-Service</h4>
                         <div class="price">0€ <span>/Monat</span></div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Sie kümmern sich komplett selbst – wir liefern nur die Dateien.</p>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Sie kümmern sich komplett selbst - wir liefern nur die Dateien.</p>
                         <ul>
                             <li>Alle Website-Dateien werden übergeben</li>
                             <li>Sie wählen Ihren eigenen Hoster</li>
@@ -1678,11 +1730,11 @@
                         </ul>
                         <a href="mailto:pascalroe@proton.me?subject=Self-Service%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Dateien anfragen</a>
                     </article>
-                    
+
                     <article class="maintenance-card alt animate-on-scroll delay-1">
                         <h4>🌐 Hosting-Partner</h4>
-                        <div class="price">19–24€ <span>/Monat</span></div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Wir hosten für Sie – inklusive kleinerer Änderungen.</p>
+                        <div class="price">19-24€ <span>/Monat</span></div>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Wir hosten für Sie - inklusive kleinerer Änderungen.</p>
                         <ul>
                             <li>Jährlich (19€) oder monatlich (24€)</li>
                             <li>Cloudflare-Hosting inklusive</li>
@@ -1691,17 +1743,17 @@
                         </ul>
                         <a href="mailto:pascalroe@proton.me?subject=Hosting-Partner%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Hosting starten</a>
                     </article>
-                    
+
                 </div>
-                
+
                 <div style="text-align: center; margin-top: 48px; padding: 36px; background: var(--gray-50); border-radius: 20px; border: 1px solid var(--gray-200);">
                     <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gray-900); margin-bottom: 12px;">Ultimative Betreuung</h3>
-                    <p style="color: var(--gray-600); margin-bottom: 16px;">Premium-Paket inklusive + bis zu 8 Änderungen pro Monat – alles aus einer Hand.</p>
+                    <p style="color: var(--gray-600); margin-bottom: 16px;">Premium-Paket inklusive + bis zu 8 Änderungen pro Monat - alles aus einer Hand.</p>
                     <a href="mailto:pascalroe@proton.me?subject=Ultimative%20Betreuung%20Anfrage" class="btn btn-large">Auf Anfrage →</a>
                 </div>
             </div>
         </section>
-        
+
         <!-- Warum Section -->
         <section class="warum animate-on-scroll" aria-labelledby="warum-title">
             <div class="container">
@@ -1711,22 +1763,22 @@
                     <div class="why-card animate-on-scroll">
                         <div class="why-icon">⚡</div>
                         <div class="why-title">KI-gestützte Effizienz</div>
-                        <div class="why-desc">Dank eigener KI-Technologie erstellen wir Websites deutlich schneller als herkömmliche Agenturen – und geben die Ersparnis an Sie weiter.</div>
+                        <div class="why-desc">Dank eigener KI-Technologie erstellen wir Websites deutlich schneller als herkömmliche Agenturen - und geben die Ersparnis an Sie weiter.</div>
                     </div>
                     <div class="why-card animate-on-scroll delay-1">
                         <div class="why-icon">🔒</div>
                         <div class="why-title">Volle Kontrolle</div>
-                        <div class="why-desc">Sie erhalten alle Dateien. Keine Lock-in-Effekte, keine Abhängigkeit. Die Website gehört Ihnen – heute und in Zukunft.</div>
+                        <div class="why-desc">Sie erhalten alle Dateien. Keine Lock-in-Effekte, keine Abhängigkeit. Die Website gehört Ihnen - heute und in Zukunft.</div>
                     </div>
                     <div class="why-card animate-on-scroll delay-2">
                         <div class="why-icon">🌱</div>
                         <div class="why-title">Nachhaltig gedacht</div>
-                        <div class="why-desc">Schnelle Ladezeiten, schlanker Code und energieeffizientes Hosting – gut für Ihre Besucher und die Umwelt.</div>
+                        <div class="why-desc">Schnelle Ladezeiten, schlanker Code und energieeffizientes Hosting - gut für Ihre Besucher und die Umwelt.</div>
                     </div>
                     <div class="why-card animate-on-scroll delay-3">
                         <div class="why-icon">💬</div>
                         <div class="why-title">Direkte Kommunikation</div>
-                        <div class="why-desc">Sie sprechen direkt mit uns – kein Umweg, kein Account-Manager dazwischen. Kurze Wege, schnelle Antworten.</div>
+                        <div class="why-desc">Sie sprechen direkt mit uns - kein Umweg, kein Account-Manager dazwischen. Kurze Wege, schnelle Antworten.</div>
                     </div>
                 </div>
             </div>
@@ -1765,7 +1817,7 @@
             <div class="container">
                 <h2 id="cta-title">Bereit für Ihre neue Webseite?</h2>
                 <p>Lassen Sie uns reden. Wir freuen uns auf Ihre Nachricht.</p>
-                <a href="mailto:pascalroe@proton.me" class="btn btn-large">Kontakt aufnehmen</a>
+                <a href="kontakt.html" class="btn btn-large">Kontakt aufnehmen</a>
             </div>
         </section>
     </main>
