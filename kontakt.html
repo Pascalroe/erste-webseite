@@ -713,7 +713,7 @@
         dringSlider.addEventListener('input', () => updateDringlichkeit(dringSlider.value));
         updateDringlichkeit(dringSlider.value);
         
-        // Handle form submission with Formspree
+        // Handle form submission with Cloudflare Worker + MailChannels
         const form = document.getElementById('questionnaire-form');
         
         form.addEventListener('submit', async function(e) {
@@ -724,22 +724,22 @@
             submitBtn.textContent = 'Wird gesendet...';
             
             try {
-                const response = await fetch(form.action, {
+                // Deine Cloudflare Worker URL hier eintragen
+                const workerUrl = 'https://kontakt-formular.your-subdomain.workers.dev';
+                
+                const response = await fetch(workerUrl, {
                     method: 'POST',
                     body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
                 });
                 
                 if (response.ok) {
                     form.style.display = 'none';
                     document.getElementById('success-message').classList.add('show');
                 } else {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Server error');
                 }
             } catch (error) {
-                // If Formspree fails, fallback to mailto
+                // Fallback zu mailto wenn Worker nicht erreichbar
                 const formData = new FormData(form);
                 let emailBody = '=== NEUE ANFRAGE ===\n\n';
                 
@@ -749,7 +749,6 @@
                     }
                 }
                 
-                // Handle multiple checkboxes
                 const pakete = formData.getAll('pakete');
                 if (pakete.length > 0) {
                     emailBody += 'Pakete: ' + pakete.join(', ') + '\n';
@@ -759,7 +758,6 @@
                 const body = encodeURIComponent(emailBody);
                 window.location.href = 'mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body;
                 
-                // Still show success since mailto opened
                 form.style.display = 'none';
                 document.getElementById('success-message').classList.add('show');
             }
