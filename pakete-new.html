@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Pakete – fudora</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: var(--gray-800); background: var(--white); }
+        nav { background: var(--white); padding: 16px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .back-btn { display: flex; align-items: center; gap: 6px; color: var(--gray-600); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+        .header { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #25 63eb 100%); color: white; padding: 40px 20px; text-align: center; }
+        .header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 1rem; opacity: 0.85; }
+        .category { padding: 24px 0; }
+        .category- webdesign { background: var(--white); }
+        .category-wartung { background: var(--gray-800); border-top: 4px solid var(--primary); border-bottom: 4px solid var(--primary); padding: 40px 0; }
+        .category-wartung .category-title { color: #ffffff; }
+        .category-wartung .category-subtitle { color: #e2e8f0; }
+        .category-wartung .package-card { background: rgba(255,255,255,0.08); border-radius: 12px; margin: 0 16px 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .category-wartung .package-card .package-name { color: #ffffff; }
+        .category-wartung .package-card .package-label { color: #67e8f9; }
+        .category-wartung .package-card .package-price { color: #ffffff; }
+        .category-wartung .package-card .package-price span { color: #cbd5e1; }
+        .category-wartung .package-card .package-features li { color: #f1f5f9; border-color: rgba(255,255,255,0.15); }
+        .category-wartung .package-card .package-features li::before { color: #67e8f9; }
+        .category-hosting { background: var(--gray-50); padding: 40px 0; }
+        .category-header { padding: 0 20px 24px; }
+        .category-title { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .category-subtitle { color: var(--gray-600); font-size: 0.95rem; }
+        .package-card { padding: 20px; border-bottom: 1px solid var(--gray-100); }
+        .package-card:last-child { border-bottom: none; }
+        .package-card.featured { background: var(--gray-50); border-radius: 16px; margin: 0 16px 16px; border: 2px solid var(--primary-light); }
+        .package-card.featured .package-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); margin: -20px -20px 16px -20px; padding: 20px 20px 16px; border-radius: 14px 14px 0 0; }
+        .package-card.featured .package-label { color: var(--accent); }
+        .package-card.featured .package-name { color: white; }
+        .package-card.featured .package-price { color: white; }
+        .package-card.featured .package-price span { color: rgba(255,255,255,0.7); }
+        .package-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .package-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+        .package-name { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); }
+        .package-price { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-align: right; }
+        .package-price span { font-size: 0.85rem; font-weight: 400; color: var(--gray-400); }
+        .package-card.featured .package-price span { color: rgba(255,255,255,0.7); }
+        .package-features { list-style: none; }
+        .package-features li { padding: 12px 0; border-bottom: 1px solid var(--gray-100); color: var(--gray-600); display: flex; align-items: flex-start; gap: 10px; }
+        .package-features li:last-child { border-bottom: none; }
+        .package-features li::before { content: "✓"; color: var(--primary); font-weight: 600; flex-shrink: 0; }
+        .package-cta { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .btn { display: inline-block; background: var(--primary); color: var(--white); padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; text-align: center; width: 100%; }
+        .btn-ou tline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-ou tline:hover { background: var(--primary); color: white; }
+        .btn-acent { background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%); }
+        footer { background: var(--gray-900); color: var(--gray-400); padding: 32px 20px; text-align: center; margin-top: 32px; }
+        footer a { color: var(--gray-400); margin: 0 12px; }
+        footer p { font-size: 0.85rem; margin-top: 16px; }
+        .category-wartung .package-cta { display: flex; flex-direction: column; gap: 8px; }
+        .category-wartung .btn-ou tline { border-color: #67e8f9; color: #67e8f9; }
+        .category-wartung .btn-ou tline:hover { background: #67e8f9; color: #0f172a; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Logo</a>
+        <a href="index.html" class="back-btn">← Zurück</a>
+    </nav>
+    <header class="header">
+        <h1>Unsere Pakete</h1>
+        <p>Das perfekte Paket für Ihr Projekt</p>
+    </header>
+
+    <!-- Webdesign Pakete -->
+    <section class="category category- webdesign">
+        <div class="category-header">
+            <h2 class="category-title">fudora</h2>
+            <p class="category-subtitle">Alle Leistungen im Detail</p>
+        </div>
+
+        <!-- Basis -->
+        <div class="package-card">
+            <div class="package-header">
+                <div>
+                    <div class="package-label">Einstieg</div>
+                    <h3 class="package-name">Basis</h3>
+                </div>
+                <div class="package-price">690€ <span>/ einmalig</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Einseitige Website (One-Pager)</li>
+                <li>Responsives Design</li>
+                <li>Kontaktformular mit E-Mail-Weiterleitung</li>
+                <li>Google-Optimierung (Meta-Tags, Sitemap)</li>
+                <li>Hosting auf Cloudflare Pages</li>
+                <li>DSGVO-konform (ohne Cookies)</li>
+                <li>Übergabe aller Dateien</li>
+            </ul>
+            <div class="package-cta">
+                <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                <a href="index.html#pakete" class="btn btn-ou tline">Mehr erfahren</a>
+            </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="package-card featured">
+            <div class="package-header">
+                <div>
+                    <div class="package-label">Beliebt</div>
+                    <h3 class="package-name">Standard</h3>
+                </div>
+                <div class="package-price">1.290€ <span>/ einmalig</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Alles aus Basis</li>
+                <li>Bis zu 5 Unterseiten</li>
+                <li>Bildergalerie für Projekte & Team</li>
+                <li>Vorher-Nachher-Bereich für Referenzen</li>
+                <li>Google Maps (datenschutzkonform)</li>
+                <li>Erweiterte SEO-Optimierung</li>
+                <li>Google My Business-Einrichtung</li>
+                <li>Textunterstützung durch KI</li>
+                <li>2 Revisionsrunden inklusive</li>
+            </ul>
+            <div class="package-cta">
+                <a href="kontakt.html" class="btn btn-acent">Jetzt anfragen</a>
+                <a href="index.html#pakete" class="btn btn-ou tline">Mehr erfahren</a>
+            </div>
+        </div>
+
+        <!-- Premium -->
+        <div class="package-card">
+            <div class="package-header">
+                <div>
+                    <div class="package-label">Premium</div>
+                    <h3 class="package-name">Premium</h3>
+                </div>
+                <div class="package-price">2.490€ <span>/ einmalig</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Alles aus Standard</li>
+                <li>Bis zu 10 Unterseiten</li>
+                <li>Individuelles Design (eigene Farbwelt/ Typografie)</li>
+                <li>Blog-/News-Bereich (auf Wunsch)</li>
+                <li>Terminbuchungs-Anbindung (Calendly/ Cal. com)</li>
+                <li>SEO-Check nach 4 Wochen</li>
+                <li>DSGVO-freundliche Analytics-Alternative</li>
+                <li>3 Revisionsrunden inklusive</li>
+            </ul>
+            <div class="package-cta">
+                <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                <a href="index.html#pakete" class="btn btn-ou tline">Mehr erfahren</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wartung & Betreuung -->
+    <section class="category category-wartung">
+        <div class="category-header">
+            <h2 class="category-title">Wartung & Betreuung</h2>
+            <p class="category-subtitle">Laufende Betreuung Ihrer Website</p>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Essenziell</h3></div>
+                <div class="package-price">19€ <span>/Monat</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Hosting-Betreuung (Cloudflare)</li>
+                <li>Domain-Verlängerungs-Management</li>
+                <li>SSL-Zertifikate automatisch</li>
+                <li>Erreichbarkeits-Monitoring</li>
+                <li>Jährlicher Sicherheits-Check</li>
+            </ul>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Pflege</h3></div>
+                <div class="package-price">29€ <span>/Monat</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Alles aus Essenziell</li>
+                <li>2 kleine Änderungen pro Monat</li>
+                <li>Jährlicher Funktions-Check</li>
+                <li>E-Mail-Support binnen 48h</li>
+            </ul>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Aktiv</h3></div>
+                <div class="package-price">59€ <span>/Monat</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Alles aus Pflege</li>
+                <li>Bis zu 5 Änderungen pro Monat</li>
+                <li>Neue Referenzprojekte einpflegen</li>
+                <li>Quartalsweiser SEO-Check</li>
+                <li>Priorisierter Support binnen 24h</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Hosting -->
+    <section class="category category-hosting">
+        <div class="category-header">
+            <h2 class="category-title">Eigenverantwortliches Hosting</h2>
+            <p class="category-subtitle">Wenn Sie sich selbst um Hosting kümmern</p>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Self-Service</h3></div>
+                <div class="package-price">0€ <span>/Monat</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Kein Hosting, keine Pflege</li>
+                <li>Sie kümmern sich selbst</li>
+                <li>Änderungen auf Anfrage</li>
+            </ul>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Domain & Hosting</h3></div>
+                <div class="package-price">19–24€ <span>/Monat</span></div>
+            </div>
+            <ul class="package-features">
+                <li>Jährlich (19€) oder monatlich (24€)</li>
+                <li>Inklusive 2 kleine Änderungen pro Monat</li>
+                <li>Umsetzung innerhalb 48h</li>
+            </ul>
+        </div>
+        <div class="package-card">
+            <div class="package-header">
+                <div><h3 class="package-name">Ultimative Betreuung</h3></div>
+                <div class="package-price">auf Anfrage</div>
+            </div>
+            <ul class="package-features">
+                <li>Premium-Paket inklusive</li>
+                <li>Bis zu 8 Änderungen pro Monat</li>
+                <li>Alles aus einer Hand</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+        <p>&copy; 2026 fudora. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
