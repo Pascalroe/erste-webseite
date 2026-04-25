@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design-Finder – fudora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --white: #ffffff;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --purple: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo svg { width: 32px; height: 32px; }
+        .nav-back {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--white); }
+
+        /* Progress */
+        .progress-wrap {
+            background: var(--gray-800);
+            padding: 20px 20px 0;
+        }
+        .progress-bar-bg {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--primary-light));
+            border-radius: 8px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 8px;
+            padding-bottom: 4px;
+        }
+
+        /* Main card */
+        .card {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 32px 20px 40px;
+        }
+
+        /* Question */
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .question {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+            line-height: 1.35;
+        }
+
+        /* Options */
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            background: rgba(255,255,255,0.06);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .option:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        .option.selected {
+            background: rgba(14,165,233,0.15);
+            border-color: var(--accent);
+        }
+        .option-letter {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .option.selected .option-letter {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .option-text { font-size: 1rem; line-height: 1.5; padding-top: 6px; }
+
+        /* Navigation buttons */
+        .nav-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .btn {
+            flex: 1;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-back {
+            background: rgba(255,255,255,0.08);
+            color: var(--gray-400);
+        }
+        .btn-back:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        .btn-next {
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            color: var(--dark);
+        }
+        .btn-next:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Result */
+        .result {
+            display: none;
+            text-align: center;
+        }
+        .result-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            color: var(--dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .result-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .result-desc {
+            color: var(--gray-400);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        .result-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .result-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+        .result-card p {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .result-features {
+            list-style: none;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .result-features li {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .result-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .result-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .result-price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
+        .btn-result {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--primary-light));
+            color: var(--dark);
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .btn-result:hover { opacity: 0.9; transform: translateY(-2px); }
+        .result-restart {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .result-restart:hover { color: var(--gray-400); }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#22d3ee"/>
+                    <stop offset="100%" stop-color="#0ea5e9"/>
+                </linearGradient>
+            </defs>
+            <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" fill="url(#lg)" opacity="0.15"/>
+            <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#lg)" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M14 16H26M14 20H24M14 24H22" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="27" cy="16" r="3" fill="url(#lg)"/>
+        </svg>
+        fudora
+    </a>
+    <a href="pakete.html" class="nav-back">← Zurück</a>
+</nav>
+
+<div class="progress-wrap">
+    <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">Frage 1 von 5</div>
+</div>
+
+<div class="card">
+    <!-- Question steps -->
+    <div id="quiz">
+        <div class="step-label" id="stepLabel">Frage 1</div>
+        <div class="question" id="questionText"></div>
+        <div class="options" id="optionsContainer"></div>
+        <div class="nav-btns">
+            <button class="btn btn-back" id="btnBack" onclick="prevStep()">← Zurück</button>
+            <button class="btn btn-next" id="btnNext" onclick="nextStep()" disabled>Weiter →</button>
+        </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result" id="resultSection">
+        <div class="result-badge">Dein Ergebnis</div>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-desc" id="resultDesc"></div>
+        <div class="result-card">
+            <h3>Was du bekommst</h3>
+            <ul class="result-features" id="resultFeatures"></ul>
+        </div>
+        <div class="result-price" id="resultPrice"></div>
+        <a href="kontakt.html" class="btn-result">Angebot anfordern →</a>
+        <span class="result-restart" onclick="restart()">Nochmal starten</span>
+    </div>
+</div>
+
+<script>
+const questions = [
+    {
+        text: "Worum geht es bei deiner Website hauptsächlich?",
+        options: [
+            { label: "Ein digitales Produkt, App oder Startup", scores: { minimal: 2, awwwards: 1, business: 0 } },
+            { label: "Mein Portfolio oder kreative Arbeiten", scores: { minimal: 1, awwwards: 2, business: 0 } },
+            { label: "Unternehmensdarstellung (Dienstleistung, Handwerk, lokal)", scores: { minimal: 0, awwwards: 0, business: 2 } },
+            { label: "Sonstiges", scores: { minimal: 1, awwwards: 1, business: 1 } }
+        ]
+    },
+    {
+        text: "Was soll die Website hauptsächlich bewirken?",
+        options: [
+            { label: "Besucher beeindrucken & inspirieren", scores: { minimal: 0, awwwards: 2, business: 0 } },
+            { label: "Vertrauen aufbauen & professionell wirken", scores: { minimal: 0, awwwards: 0, business: 2 } },
+            { label: "Kontaktaufnahme erleichtern", scores: { minimal: 2, awwwards: 0, business: 1 } },
+            { label: "Ich bin mir unsicher", scores: { minimal: 1, awwwards: 1, business: 1 } }
+        ]
+    },
+    {
+        text: "Welcher Stil spricht dich an?",
+        options: [
+            { label: "Clean, minimalistisch, fokussiert", scores: { minimal: 2, awwwards: 0, business: 1 } },
+            { label: "Mutig, auffällig, einprägsam", scores: { minimal: 0, awwwards: 2, business: 0 } },
+            { label: "Professionell, vertrauenswürdig", scores: { minimal: 0, awwwards: 0, business: 2 } },
+            { label: "Experimentell, einzigartig", scores: { minimal: 0, awwwards: 2, business: 0 } }
+        ]
+    },
+    {
+        text: "Was ist dir am wichtigsten?",
+        options: [
+            { label: "Klare Struktur & einfache Navigation", scores: { minimal: 1, awwwards: 0, business: 2 } },
+            { label: "Visueller Auftritt & Emotionen", scores: { minimal: 0, awwwards: 2, business: 0 } },
+            { label: "Schnelle Ladezeit & Technik (Apple/Stripe-Style)", scores: { minimal: 2, awwwards: 1, business: 0 } },
+            { label: "Viel Inhalt & umfassende Informationen", scores: { minimal: 0, awwwards: 0, business: 2 } }
+        ]
+    },
+    {
+        text: "Welche Referenz inspiriert dich am meisten?",
+        options: [
+            { label: "Tech-Premium (Apple, Stripe, Linear)", scores: { minimal: 2, awwwards: 1, business: 0 } },
+            { label: "Agentur-Style (Awwwards, kreativ, mutig)", scores: { minimal: 0, awwwards: 2, business: 0 } },
+            { label: "Klassisches Business (sauber, strukturiert)", scores: { minimal: 0, awwwards: 0, business: 2 } },
+            { label: "Keine bestimmte Referenz", scores: { minimal: 1, awwwards: 1, business: 1 } }
+        ]
+    }
+];
+
+const results = {
+    minimal: {
+        label: "Minimal Website",
+        badge: "Einfach & Schnell",
+        desc: "Dein Projekt braucht eine klare, schnelle Website ohne Schnörkel. Fokus auf das Wesentliche — schnell geladen, überall perfekt, sofort einsatzbereit.",
+        features: [
+            "Einseitige Website (One-Pager)",
+            "Responsives Design für alle Geräte",
+            "Kontaktformular mit E-Mail-Weiterleitung",
+            "Google-Optimierung (Meta-Tags, Sitemap)",
+            "Hosting auf Cloudflare Pages",
+            "DSGVO-konform (ohne Cookies)"
+        ],
+        price: "690€ einmalig",
+        link: "kontakt.html"
+    },
+    awwwards: {
+        label: "Awwwards Website",
+        badge: "Kreativ & Beeindruckend",
+        desc: "Dein Projekt verdient eine Website, die in Erinnerung bleibt. Mutiges Design, innovative Interaktionen und ein Auftritt, der aus der Masse heraussticht.",
+        features: [
+            "Individuelles Design nach deinen Vorstellungen",
+            "Animierte Übergänge & Scroll-Effekte",
+            "Premium-Typografie & Farbwelt",
+            "Interaktive Elemente & Micro-Animationen",
+            "Bis zu 5 Unterseiten",
+            "3 Revisionsrunden inklusive"
+        ],
+        price: "ab 1.290€ einmalig",
+        link: "kontakt.html"
+    },
+    business: {
+        label: "Business Website",
+        badge: "Professionell & Vertrauenswürdig",
+        desc: "Dein Unternehmen braucht einen professionellen Online-Auftritt, der Vertrauen schafft und potenzielle Kunden überzeugt. Klar, strukturiert und vollständig.",
+        features: [
+            "Bis zu 5 Unterseiten",
+            "Bildergalerie für Projekte & Team",
+            "Google Maps (datenschutzkonform)",
+            "Erweiterte SEO-Optimierung",
+            "Textunterstützung durch KI",
+            "2 Revisionsrunden inklusive"
+        ],
+        price: "1.290€ einmalig",
+        link: "kontakt.html"
+    }
+};
+
+let current = 0;
+let scores = { minimal: 0, awwwards: 0, business: 0 };
+let selected = null;
+
+function render() {
+    const q = questions[current];
+    document.getElementById('stepLabel').textContent = `Frage ${current + 1}`;
+    document.getElementById('questionText').textContent = q.text;
+    document.getElementById('progressFill').style.width = `${((current) / questions.length) * 100}%`;
+    document.getElementById('progressText').textContent = `Frage ${current + 1} von ${questions.length}`;
+
+    const container = document.getElementById('optionsContainer');
+    container.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+    q.options.forEach((opt, i) => {
+        const div = document.createElement('div');
+        div.className = 'option' + (selected === i ? ' selected' : '');
+        div.innerHTML = `<div class="option-letter">${letters[i]}</div><div class="option-text">${opt.label}</div>`;
+        div.onclick = () => selectOption(i);
+        container.appendChild(div);
+    });
+
+    document.getElementById('btnBack').style.visibility = current === 0 ? 'hidden' : 'visible';
+    document.getElementById('btnNext').disabled = selected === null;
+    document.getElementById('quiz').style.display = 'block';
+    document.getElementById('resultSection').style.display = 'none';
+    selected = null;
+}
+
+function selectOption(index) {
+    selected = index;
+    document.querySelectorAll('.option').forEach((el, i) => {
+        el.classList.toggle('selected', i === index);
+    });
+    document.getElementById('btnNext').disabled = false;
+}
+
+function nextStep() {
+    if (selected === null) return;
+    const q = questions[current];
+    const opt = q.options[selected];
+    scores.minimal += opt.scores.minimal;
+    scores.awwwards += opt.scores.awwwards;
+    scores.business += opt.scores.business;
+
+    selected = null;
+    if (current < questions.length - 1) {
+        current++;
+        render();
+    } else {
+        showResult();
+    }
+}
+
+function prevStep() {
+    if (current > 0) {
+        current--;
+        selected = null;
+        render();
+    }
+}
+
+function showResult() {
+    // Find winner
+    const max = Math.max(scores.minimal, scores.awwwards, scores.business);
+    let winner;
+    if (scores.awwwards === max) winner = 'awwwards';
+    else if (scores.business === max) winner = 'business';
+    else winner = 'minimal';
+
+    // Tie-breaker: prefer minimal
+    if (scores.minimal === max && scores.awwwards === max) winner = 'minimal';
+    if (scores.minimal === max && scores.business === max) winner = 'minimal';
+
+    const r = results[winner];
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressText').textContent = 'Dein Ergebnis';
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('resultSection').style.display = 'block';
+    document.getElementById('resultTitle').textContent = r.label;
+    document.getElementById('resultDesc').textContent = r.desc;
+    document.getElementById('resultPrice').innerHTML = r.price + ' <span>/ einmalig</span>';
+
+    const feat = document.getElementById('resultFeatures');
+    feat.innerHTML = '';
+    r.features.forEach(f => {
+        const li = document.createElement('li');
+        li.textContent = f;
+        feat.appendChild(li);
+    });
+}
+
+function restart() {
+    current = 0;
+    scores = { minimal: 0, awwwards: 0, business: 0 };
+    selected = null;
+    render();
+}
+
+render();
+</script>
+
+</body>
+</html>
