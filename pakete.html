@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pakete – Website Bau</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1e40af;
             --primary-dark: #1e3a8a;
@@ -30,7 +26,7 @@
             color: var(--gray-800);
             background: var(--white);
         }
-        
+
         /* Navigation */
         nav {
             background: var(--white);
@@ -52,23 +48,7 @@
             gap: 8px;
             text-decoration: none;
         }
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
-        }
-        .logo-icon svg {
-            transition: transform 0.3s ease;
-        }
-        .logo-icon svg path {
-            transition: filter 0.3s ease;
-        }
-        .logo:hover .logo-icon svg {
-            transform: rotate(-8deg) scale(1.08);
-        }
-        .logo:hover .logo-icon svg path {
-            filter: drop-shadow(0 4px 12px rgba(14, 165, 233, 0.5));
-        }
+        .logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
         .back-btn {
             display: flex;
             align-items: center;
@@ -78,7 +58,7 @@
             font-weight: 500;
             font-size: 0.95rem;
         }
-        
+
         /* Header */
         .header {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
@@ -86,87 +66,44 @@
             padding: 40px 20px;
             text-align: center;
         }
-        .header h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .header p {
-            font-size: 1rem;
-            opacity: 0.85;
-        }
-        
+        .header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 1rem; opacity: 0.85; }
+
         /* Category Sections */
-        .category {
-            padding: 24px 0;
-        }
-        .category-webdesign {
-            background: var(--white);
-        }
+        .category { padding: 24px 0; }
+        .category-webdesign { background: var(--white); }
         .category-wartung {
             background: var(--gray-800);
             border-top: 4px solid var(--primary);
             border-bottom: 4px solid var(--primary);
             padding: 40px 0;
         }
-        .category-wartung .category-title {
-            color: #ffffff;
-        }
-        .category-wartung .category-subtitle {
-            color: #e2e8f0;
-        }
+        .category-wartung .category-title { color: #ffffff; }
+        .category-wartung .category-subtitle { color: #e2e8f0; }
         .category-wartung .package-card {
             background: rgba(255,255,255,0.08);
             border-radius: 12px;
             margin: 0 16px 12px;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .category-wartung .package-card .package-name {
-            color: #ffffff;
-        }
-        .category-wartung .package-card .package-label {
-            color: #67e8f9;
-        }
-        .category-wartung .package-card .package-price {
-            color: #ffffff;
-        }
-        .category-wartung .package-card .package-price span {
-            color: #cbd5e1;
-        }
-        .category-wartung .package-card .package-features li {
-            color: #f1f5f9;
-            border-color: rgba(255,255,255,0.15);
-        }
-        .category-wartung .package-card .package-features li::before {
-            color: #67e8f9;
-        }
-        .category-hosting {
-            background: var(--gray-50);
-            padding: 40px 0;
-        }
-        
-        .category-header {
-            padding: 0 20px 24px;
-        }
-        .category-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 4px;
-        }
-        .category-subtitle {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-        }
-        
+        .category-wartung .package-card .package-name { color: #ffffff; }
+        .category-wartung .package-card .package-label { color: #67e8f9; }
+        .category-wartung .package-card .package-price { color: #ffffff; }
+        .category-wartung .package-card .package-price span { color: #cbd5e1; }
+        .category-wartung .package-card .package-features li { color: #f1f5f9; border-color: rgba(255,255,255,0.15); }
+        .category-wartung .package-card .package-features li::before { color: #67e8f9; }
+        .category-hosting { background: var(--gray-50); padding: 40px 0; }
+
+        .category-header { padding: 0 20px 24px; }
+        .category-title { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .category-subtitle { color: var(--gray-600); font-size: 0.95rem; }
+
         /* Package Card */
         .package-card {
             padding: 20px;
             border-bottom: 1px solid var(--gray-100);
         }
-        .package-card:last-child {
-            border-bottom: none;
-        }
+        .package-card:last-child { border-bottom: none; }
         .package-card.featured {
             background: var(--gray-50);
             border-radius: 16px;
@@ -176,21 +113,13 @@
         .package-card.featured .package-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             margin: -20px -20px 16px -20px;
-            padding: 20px 20px 16px;
+            padding: 20px;
             border-radius: 14px 14px 0 0;
         }
-        .package-card.featured .package-label {
-            color: var(--accent);
-        }
-        .package-card.featured .package-name {
-            color: white;
-        }
-        .package-card.featured .package-price {
-            color: white;
-        }
-        .package-card.featured .package-price span {
-            color: rgba(255,255,255,0.7);
-        }
+        .package-card.featured .package-label { color: var(--accent); }
+        .package-card.featured .package-name { color: white; }
+        .package-card.featured .package-price { color: white; }
+        .package-card.featured .package-price span { color: rgba(255,255,255,0.7); }
 
         .package-header {
             display: flex;
@@ -206,28 +135,12 @@
             color: var(--accent);
             margin-bottom: 4px;
         }
-        .package-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-        .package-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-align: right;
-        }
-        .package-price span {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--gray-400);
-        }
-        .package-card.featured .package-price span {
-            color: rgba(255,255,255,0.7);
-        }
-        .package-features {
-            list-style: none;
-        }
+        .package-name { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); }
+        .package-price { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-align: right; }
+        .package-price span { font-size: 0.85rem; font-weight: 400; color: var(--gray-400); }
+        .package-card.featured .package-price span { color: rgba(255,255,255,0.7); }
+
+        .package-features { list-style: none; }
         .package-features li {
             padding: 12px 0;
             border-bottom: 1px solid var(--gray-100);
@@ -236,17 +149,15 @@
             align-items: flex-start;
             gap: 10px;
         }
-        .package-features li:last-child {
-            border-bottom: none;
-        }
-        .package-features li::before {
-            content: "✓";
-            color: var(--primary);
-            font-weight: 600;
-            flex-shrink: 0;
-        }
+        .package-features li:last-child { border-bottom: none; }
+        .package-features li::before { content: "✓"; color: var(--primary); font-weight: 600; flex-shrink: 0; }
+
+        /* CTA Buttons */
         .package-cta {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         .btn {
             display: inline-block;
@@ -258,52 +169,32 @@
             font-weight: 600;
             text-decoration: none;
             text-align: center;
-            width: 100%;
-        }
-        .btn-""accent {
-            background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
-        }
-        .btn-acent {
-            background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
-        }
-        .btn-ou""tline {
-            background: transparent;
             border: 2px solid var(--primary);
-            color: var(--primary);
+            cursor: pointer;
+            flex: 1;
+            min-width: 100%;
         }
-        .btn-ou""tline:""hover {
-            background: var(--primary);
-            color: white;
+        .btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+        .btn-accent {
+            background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+            border-color: transparent;
         }
+        .btn-accent:hover { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
+        .btn-outline:hover { background: var(--primary); color: white; }
+
         /* Footer */
-        footer {
-            background: var(--gray-900);
-            color: var(--gray-400);
-            padding: 32px 20px;
-            text-align: center;
-            margin-top: 32px;
-        }
-        footer p {
-            font-size: 0.85rem;
+        footer { background: var(--gray-900); color: var(--gray-400); padding: 32px 20px; text-align: center; margin-top: 32px; }
+        footer p { font-size: 0.85rem; margin-top: 12px; }
+
+        /* Desktop: side by side buttons */
+        @media (min-width: 640px) {
+            .package-cta { flex-direction: row; gap: 12px; }
+            .btn { min-width: auto; flex: 1; }
         }
     </style>
 </head>
@@ -311,33 +202,32 @@
     <nav>
         <a href="index.html" class="logo">
             <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#22d3ee"/>
-                            <stop offset="100%" stop-color="#0ea5e9"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" fill="url(#logoGrad)" opacity="0.15"/>
-                    <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linejoin="round"/>
-                    <path d="M14 16H26M14 20H24M14 24H22" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="27" cy="16" r="3" fill="url(#logoGrad)"/>
-                </svg>
+                <defs>
+                    <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#0ea5e9"/>
+                    </linearGradient>
+                </defs>
+                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" fill="url(#logoGrad)" opacity="0.15"/>
+                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M14 16H26M14 20H24M14 24H22" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="27" cy="16" r="3" fill="url(#logoGrad)"/>
+            </svg>
         </a>
         <a href="index.html" class="back-btn">← Zurück</a>
     </nav>
-    
+
     <header class="header">
         <h1>Unsere Pakete</h1>
         <p>Das perfekte Paket für Ihr Projekt</p>
     </header>
-    
+
     <!-- fudora Pakete -->
     <section class="category category-webdesign">
         <div class="category-header">
             <h2 class="category-title">fudora</h2>
             <p class="category-subtitle">Alle Leistungen im Detail</p>
         </div>
-        
+
         <!-- Basis -->
         <div class="package-card">
             <div class="package-header">
@@ -361,7 +251,7 @@
                 <a href="finder.html" class="btn btn-outline">Mehr erfahren</a>
             </div>
         </div>
-        
+
         <!-- Standard -->
         <div class="package-card featured">
             <div class="package-header">
@@ -375,10 +265,10 @@
                 <li>Alles aus Basis</li>
                 <li>Bis zu 5 Unterseiten</li>
                 <li>Bildergalerie für Projekte & Team</li>
-                <li>Vorher-Nachher-Bereich für Referenzen</li>
+                <li>Vorher- Nachher-Bereich für Referenzen</li>
                 <li>Google Maps (datenschutzkonform)</li>
                 <li>Erweiterte SEO-Optimierung</li>
-                <li>Google My Business-Einrichtung</li>
+                <li>Google My Business- Einrichtung</li>
                 <li>Textunterstützung durch KI</li>
                 <li>2 Revisionsrunden inklusive</li>
             </ul>
@@ -387,7 +277,7 @@
                 <a href="finder.html" class="btn btn-outline">Mehr erfahren</a>
             </div>
         </div>
-        
+
         <!-- Premium -->
         <div class="package-card">
             <div class="package-header">
@@ -400,11 +290,11 @@
             <ul class="package-features">
                 <li>Alles aus Standard</li>
                 <li>Bis zu 10 Unterseiten</li>
-                <li>Individuelles Design (eigene Farbwelt/Typografie)</li>
-                <li>Blog-/News-Bereich (auf Wunsch)</li>
-                <li>Terminbuchungs-Anbindung (Calendly/Cal.com)</li>
+                <li>Individuelles Design (eigene Farbwelt/ Typografie)</li>
+                <li>Blog-/News- Bereich (auf Wunsch)</li>
+                <li>Terminbuchungs- Anbindung (Calendly/ Cal.com)</li>
                 <li>SEO-Check nach 4 Wochen</li>
-                <li>DSGVO-freundliche Analytics-Alternative</li>
+                <li>DSGVO-freundliche Analytics- Alternative</li>
                 <li>3 Revisionsrunden inklusive</li>
             </ul>
             <div class="package-cta">
@@ -413,74 +303,62 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Wartung & Betreuung -->
     <section class="category category-wartung">
         <div class="category-header">
             <h2 class="category-title">Wartung & Betreuung</h2>
             <p class="category-subtitle">Laufende Betreuung Ihrer Website</p>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Essenziell</h3>
-                </div>
+                <div><h3 class="package-name">Essenziell</h3></div>
                 <div class="package-price">19€ <span>/Monat</span></div>
             </div>
             <ul class="package-features">
                 <li>Hosting-Betreuung (Cloudflare)</li>
-                <li>Domain-Verlängerungs-Management</li>
-                <li>SSL-Zertifikate automatisch</li>
-                <li>Erreichbarkeits-Monitoring</li>
-                <li>Jährlicher Sicherheits-Check</li>
+                <li>Domain- Verlängerungs-Management</li>
+                <li>SSL- Zertifikate automatisch</li>
+                <li>Erreichbarkeits- Monitoring</li>
+                <li>Jährlicher Sicherheits- Check</li>
             </ul>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Pflege</h3>
-                </div>
+                <div><h3 class="package-name">Pflege</h3></div>
                 <div class="package-price">29€ <span>/Monat</span></div>
             </div>
             <ul class="package-features">
                 <li>Alles aus Essenziell</li>
                 <li>2 kleine Änderungen pro Monat</li>
-                <li>Jährlicher Funktions-Check</li>
-                <li>E-Mail-Support binnen 48h</li>
+                <li>Jährlicher Funktions- Check</li>
+                <li>E-Mail- Support binnen 48h</li>
             </ul>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Aktiv</h3>
-                </div>
+                <div><h3 class="package-name">Aktiv</h3></div>
                 <div class="package-price">59€ <span>/Monat</span></div>
             </div>
             <ul class="package-features">
                 <li>Alles aus Pflege</li>
                 <li>Bis zu 5 Änderungen pro Monat</li>
                 <li>Neue Referenzprojekte einpflegen</li>
-                <li>Quartalsweiser SEO-Check</li>
+                <li>Quartalsweiser SEO- Check</li>
                 <li>Priorisierter Support binnen 24h</li>
             </ul>
         </div>
     </section>
-    
+
     <!-- Eigenverantwortliches Hosting -->
     <section class="category category-hosting">
         <div class="category-header">
             <h2 class="category-title">Eigenverantwortliches Hosting</h2>
             <p class="category-subtitle">Wenn Sie sich selbst um Hosting kümmern</p>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Self-Service</h3>
-                </div>
+                <div><h3 class="package-name">Self-Service</h3></div>
                 <div class="package-price">0€ <span>/Monat</span></div>
             </div>
             <ul class="package-features">
@@ -489,12 +367,9 @@
                 <li>Änderungen auf Anfrage</li>
             </ul>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Domain & Hosting</h3>
-                </div>
+                <div><h3 class="package-name">Domain & Hosting</h3></div>
                 <div class="package-price">19–24€ <span>/Monat</span></div>
             </div>
             <ul class="package-features">
@@ -503,12 +378,9 @@
                 <li>Umsetzung innerhalb 48h</li>
             </ul>
         </div>
-        
         <div class="package-card">
             <div class="package-header">
-                <div>
-                    <h3 class="package-name">Ultimative Betreuung</h3>
-                </div>
+                <div><h3 class="package-name">Ultimative Betreuung</h3></div>
                 <div class="package-price">auf Anfrage</div>
             </div>
             <ul class="package-features">
@@ -518,13 +390,15 @@
             </ul>
         </div>
     </section>
-    
+
     <footer>
-        <a href="impressum.html">Impressum</a>
-        <a href="agb.html">AGB</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="kontakt.html">Kontakt</a>
-        <p class="copyright">&copy; 2026 fudora. Alle Rechte vorbehalten.</p>
+        <p style="margin-bottom:12px">
+            <a href="impressum.html" style="color:#94a3b8;margin:0 8px;text-decoration:none">Impressum</a>
+            <a href="agb.html" style="color:#94a3b8;margin:0 8px;text-decoration:none">AGB</a>
+            <a href="datenschutz.html" style="color:#94a3b8;margin:0 8px;text-decoration:none">Datenschutz</a>
+            <a href="kontakt.html" style="color:#94a3b8;margin:0 8px;text-decoration:none">Kontakt</a>
+        </p>
+        <p>&copy; 2026 fudora. Alle Rechte vorbehalten.</p>
     </footer>
 </body>
 </html>
