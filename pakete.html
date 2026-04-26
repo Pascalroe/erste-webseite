@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pakete – Website Bau</title>
     <style>
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1e40af;
@@ -80,12 +81,7 @@
         }
         .category-wartung .category-title { color: #ffffff; }
         .category-wartung .category-subtitle { color: #e2e8f0; }
-        .category-wartung .package-card {
-            background: rgba(255,255,255,0.08);
-            border-radius: 12px;
-            margin: 0 16px 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        .category-wartung
         .category-wartung .package-card .package-name { color: #ffffff; }
         .category-wartung .package-card .package-label { color: #67e8f9; }
         .category-wartung .package-card .package-price { color: #ffffff; }
@@ -99,11 +95,6 @@
         .category-subtitle { color: var(--gray-600); font-size: 0.95rem; }
 
         /* Package Card */
-        .package-card {
-            padding: 20px;
-            border-bottom: 1px solid var(--gray-100);
-        }
-        .package-card:last-child { border-bottom: none; }
         .package-card.featured {
             background: var(--gray-50);
             border-radius: 16px;
@@ -196,7 +187,27 @@
             .package-cta { flex-direction: row; gap: 12px; }
             .btn { min-width: auto; flex: 1; }
         }
+        /* Package Grid - 3 columns layout */
+        .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .package-grid-item { background: var(--white); border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .package-grid-item:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(30,64,175,0.12); }
+        .package-grid-item.featured { border: 2px solid var(--primary-light); }
+        .package-grid-item .package-header { flex-shrink: 0; }
+        .package-grid-item .package-cta { margin-top: auto; padding-top: 16px; }
+        .category-wartung .package-grid { padding-top: 8px; }
+        .category-wartung .package-grid-item { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; }
+        .category-wartung .package-grid-item .package-name { color: #fff; }
+        .category-wartung .package-grid-item .package-label { color: #67e8f9; }
+        .category-wartung .package-grid-item .package-price { color: #fff; }
+        .category-wartung .package-grid-item .package-price span { color: #cbd5e1; }
+        .category-wartung .package-grid-item .package-features li { color: #f1f5f9; border-color: rgba(255,255,255,0.15); }
+        .category-wartung .package-grid-item .package-features li::before { color: #67e8f9; }
+        .category-wartung .package-grid-item.featured { border-color: #67e8f9; }
+        .category-wartung .package-grid-item:hover { background: rgba(255,255,255,0.12); }
+        @media (max-width: 900px) { .package-grid { grid-template-columns: 1fr; gap: 16px; } }
+
     </style>
+
 </head>
 <body>
     <nav>
@@ -228,8 +239,10 @@
             <p class="category-subtitle">Alle Leistungen im Detail</p>
         </div>
 
-        <!-- Basis -->
-        <div class="package-card">
+        
+        <div class="package-grid">
+<!-- Basis -->
+        <div class="package-grid-item">
             <div class="package-header">
                 <div>
                     <div class="package-label">Einstieg</div>
@@ -253,7 +266,7 @@
         </div>
 
         <!-- Standard -->
-        <div class="package-card featured">
+        <div class="package-grid-item featured">
             <div class="package-header">
                 <div>
                     <div class="package-label">Beliebt</div>
@@ -279,7 +292,7 @@
         </div>
 
         <!-- Premium -->
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div>
                     <div class="package-label">Premium</div>
@@ -302,6 +315,7 @@
                 <a href="finder.html" class="btn btn-outline">Mehr erfahren</a>
             </div>
         </div>
+        </div>
     </section>
 
     <!-- Wartung & Betreuung -->
@@ -310,7 +324,9 @@
             <h2 class="category-title">Wartung & Betreuung</h2>
             <p class="category-subtitle">Laufende Betreuung Ihrer Website</p>
         </div>
-        <div class="package-card">
+        
+        <div class="package-grid">
+<div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Essenziell</h3></div>
                 <div class="package-price">ab 19€ <span>/Monat</span></div>
@@ -326,7 +342,7 @@
                 <a href="kontakt. html" class="btn">Anfragen</a>
             </div>
         </div>
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Pflege</h3></div>
                 <div class="package-price">ab 29€ <span>/Monat</span></div>
@@ -341,7 +357,7 @@
                 <a href="kontakt. html" class="btn">Anfragen</a>
             </div>
         </div>
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Aktiv</h3></div>
                 <div class="package-price">ab 59€ <span>/Monat</span></div>
@@ -357,6 +373,7 @@
                 <a href="kontakt. html" class="btn">Anfragen</a>
             </div>
         </div>
+        </div>
     </section>
 
     <!-- Eigenverantwortliches Hosting -->
@@ -365,7 +382,7 @@
             <h2 class="category-title">Eigenverantwortliches Hosting</h2>
             <p class="category-subtitle">Wenn Sie sich selbst um Hosting kümmern</p>
         </div>
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Self-Service</h3></div>
                 <div class="package-price">0€ <span>/Monat</span></div>
@@ -378,7 +395,7 @@
                 <a href="kontakt. html" class="btn">Trotzdem anfragen</a>
             </div>
         </div>
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Domain & Hosting</h3></div>
                 <div class="package-price">19–24€ <span>/Monat</span></div>
@@ -392,7 +409,7 @@
                 <a href="kontakt. html" class="btn">Anfragen</a>
             </div>
         </div>
-        <div class="package-card">
+        <div class="package-grid-item">
             <div class="package-header">
                 <div><h3 class="package-name">Ultimative Betreuung</h3></div>
                 <div class="package-price">auf Anfrage</div>
