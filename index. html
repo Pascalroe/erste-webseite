@@ -24,6 +24,23 @@
             --gray-100: #f1f5f9;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
+            --gra
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --accent-light: #22d3ee;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
             --gray-400: #94a3b8;
             --gray-600: #475569;
             --gray-800: #1e293b;
@@ -1840,8 +1857,8 @@
             footer a {
                 font-size: 0.85rem;
             }
-        }
-    </style>
+        
+    
 </head>
 <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -1872,7 +1889,7 @@
                 <a href="#faq">FAQ</a>
                 <a href="mailto:pascalroe@proton.me" class="highlight-link">Kontakt</a>
             </div>
-            <button class="burger" aria-label="Menü öffnen" aria-expanded="false">
+            <button class="burger" aria-label="Menü öffnen" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -2075,7 +2092,7 @@
                                 <li>Erreichbarkeits-Monitoring</li>
                                 <li>Jährlicher Sicherheits-Check</li>
                             </ul>
-                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)" type="button">Mehr erfahren</button>
                         </article>
 
                         <article class="maintenance-card animate-on-scroll delay-1">
@@ -2092,7 +2109,7 @@
                                 <li>Jährlicher Funktions-Check</li>
                                 <li>E-Mail-Support binnen 48h</li>
                             </ul>
-                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)" type="button">Mehr erfahren</button>
                         </article>
 
                         <article class="maintenance-card animate-on-scroll delay-2">
@@ -2110,7 +2127,7 @@
                                 <li>Quartalsweiser SEO-Check</li>
                                 <li>Priorisierter Support binnen 24h</li>
                             </ul>
-                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)" type="button">Mehr erfahren</button>
                         </article>
                     </div>
                 </div>
