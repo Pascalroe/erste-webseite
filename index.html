@@ -1,52 +1,140 @@
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGB – fudora</title>
+    <title>Website-Bau - schnell &amp; professionell | fudora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         :root {
             --primary: #1e40af;
+            --primary-dark: #1e3a8a;
             --primary-light: #3b82f6;
-            --gray-900: #0f172a;
-            --gray-600: #475569;
-            --gray-400: #94a3b8;
+            --accent: #0ea5e9;
+            --accent-light: #22d3ee;
             --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --success: #10b981;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.8;
-            color: var(--gray-600);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--gray-800);
             background: var(--white);
+            overflow-x: hidden;
         }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.5); }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* Navigation */
         nav {
-            background: var(--white);
-            padding: 16px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .logo {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
         }
         .logo-icon {
             width: 40px;
             height: 40px;
             flex-shrink: 0;
-        }
-        .logo-icon svg {
-            transition: transform 0.3s ease;
-        }
-        .logo-icon svg path {
-            transition: filter 0.3s ease;
         }
         .logo:hover .logo-icon svg {
             transform: rotate(-8deg) scale(1.08);
@@ -54,66 +142,1665 @@
         .logo:hover .logo-icon svg path {
             filter: drop-shadow(0 4px 12px rgba(14, 165, 233, 0.5));
         }
-        h1 {
-            color: var(--gray-900);
-            margin-bottom: 30px;
-            font-size: 2rem;
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        h2 {
-            color: var(--gray-900);
-            margin: 40px 0 16px;
-            font-size: 1.25rem;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary);
-            display: inline-block;
+        .nav-links a {
+            color: var(--gray-600);
+            margin-left: 32px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            position: relative;
         }
-        p {
-            margin-bottom: 16px;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
-        ul {
-            margin-left: 24px;
-            margin-bottom: 16px;
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
         }
-        li {
-            margin-bottom: 8px;
-        }
-        a {
+        .nav-links a:hover,
+        .nav-links a:focus {
             color: var(--primary);
         }
-        a:hover {
-            color: var(--primary-light);
+        .nav-links a.highlight-link {
+            color: var(--primary);
+            font-weight: 600;
         }
-        .back {
+
+        /* Burger Menu Button */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            padding: 0;
+            background: none;
+            border: none;
+        }
+        .burger span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background: var(--gray-800);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 100px 24px 40px;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+        }
+        .mobile-menu.open {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 18px 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--gray-800);
+            border-bottom: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        .mobile-menu a:last-child {
+            border-bottom: none;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 24px;
-            color: var(--gray-400);
-            text-decoration: none;
-            font-weight: 500;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .back:hover {
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn:hover,
+        .btn:focus {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.35);
+        }
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
             color: var(--primary);
         }
-        .divider {
-            border: none;
-            border-top: 1px solid #e2e8f0;
-            margin: 40px 0;
+        .btn-outline:hover,
+        .btn-outline:focus {
+            background: var(--primary);
+            color: var(--white);
         }
-        footer {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #e2e8f0;
-            color: var(--gray-400);
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+            border-radius: 14px;
+        }
+        .btn-large:hover,
+        .btn-large:focus {
+            background: linear-gradient(135deg, #67e8f9 0%, var(--accent-light) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(14, 165, 233, 0.5);
+        }
+        .btn-large.btn-outline {
+            background: transparent;
+            border: 2px solid rgba(34, 211, 238, 0.5);
+            color: var(--accent-light);
+            box-shadow: none;
+        }
+        .btn-large.btn-outline:hover,
+        .btn-large.btn-outline:focus {
+            background: rgba(34, 211, 238, 0.15);
+            border-color: var(--accent-light);
+            color: var(--white);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+        }
+        .btn-sm {
+            padding: 10px 16px;
             font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            padding: 160px 0 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: float 9s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: float 11s ease-in-out infinite reverse;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.15);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: #67e8f9;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: fadeInUp 0.6s ease;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.6s ease 0.05s both;
+        }
+        .hero h1 .accent {
+            background: linear-gradient(90deg, #38bdf8, #22d3ee, #67e8f9);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            max-width: 680px;
+            margin: 0 auto 16px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+        .hero-description {
+            display: none;
+        }
+        .hero-features {
+            display: none;
+        }
+        .hero-trust {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.6s ease 0.15s both;
+        }
+        .trust-item {
+            text-align: center;
+        }
+        .trust-item .num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: -0.03em;
+            display: block;
+        }
+        .trust-item .label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .hero-actions {
+            display: flex;
+            
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+        .hero .btn-large {
+            animation: none;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto 60px;
+            font-size: 1.15rem;
+        }
+
+        /* Choice Section */
+        .choice {
+            background: var(--white);
+            padding: 100px 0;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 60px auto 0;
+        }
+        .choice-card {
+            background: var(--gray-50);
+            border-radius: 24px;
+            padding: 52px 44px;
+            text-align: left;
+            border: 1px solid var(--gray-200);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+        .choice-card:hover::before {
+            transform: scaleX(1);
+        }
+        .choice-card:hover {
+            border-color: transparent;
+            box-shadow: 0 24px 60px rgba(30, 64, 175, 0.12);
+            transform: translateY(-8px);
+        }
+        .choice-card .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+        .choice-card:hover .card-icon {
+            transform: scale(1.08) rotate(-3deg);
+        }
+        .choice-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+        .choice-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .choice-card p {
+            color: var(--gray-600);
+            margin-bottom: 28px;
+            font-size: 1rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        /* Pakete */
+        .pakete {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .pakete::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+        .pakete .container {
+            position: relative;
+            z-index: 1;
+        }
+        .pakete .section-title {
+            color: var(--white);
+        }
+        .pakete .section-subtitle {
+            color: #94a3b8;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .pricing-card:hover::before {
+            opacity: 1;
+        }
+        .pricing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: transparent;
+        }
+        .pricing-card.featured {
+            border: 2px solid var(--accent-light);
+            transform: scale(1.05);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.25);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+        .pricing-label {
+            font-size: 0.7rem;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .pricing-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .pricing-price {
+            font-size: 3.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-400);
+            -webkit-text-fill-color: var(--gray-400);
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+            flex-grow: 1;
+            text-align: left;
+        }
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .pricing-features li:hover {
+            transform: translateX(5px);
+            color: var(--gray-800);
+        }
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        .pricing-features-preview {
+            list-style: none;
+            margin: 16px 0;
+            text-align: center;
+            display: none;
+        }
+        .pricing-features-preview li {
+            padding: 4px 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        .pricing-card .pricing-cta {
+            margin-top: 24px;
+        }
+        .pricing-card .pricing-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        .pricing-card.featured .pricing-cta .btn {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+        .pricing-card.featured .pricing-cta .btn:hover {
+            box-shadow: 0 12px 35px rgba(14, 165, 233, 0.5);
+        }
+        .pricing-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .pricing-buttons .btn {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Wartung */
+        .wartung {
+            background: var(--white);
+        }
+        .wartung-subsection {
+            margin-bottom: 60px;
+        }
+        .wartung-subsection:last-child {
+            margin-bottom: 0;
+        }
+        .subsection-title {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .subsection-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+        .maintenance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+        .maintenance-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .maintenance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+        .maintenance-card:hover::before {
+            transform: scaleX(1);
+        }
+        .maintenance-card:hover {
+            border-color: transparent;
+            box-shadow: 0 24px 60px rgba(30, 64, 175, 0.12);
+            transform: translateY(-8px);
+        }
+        .maintenance-card.alt {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            border: none;
+        }
+        .maintenance-card.alt::before {
+            display: none;
+        }
+        .maintenance-card.alt:hover {
+            box-shadow: 0 24px 60px rgba(14, 165, 233, 0.25);
+            transform: translateY(-8px);
+        }
+        .maintenance-card.alt h4 {
+            color: var(--white);
+        }
+        .maintenance-card.alt .price {
+            color: #38bdf8;
+        }
+        .maintenance-card.alt li {
+            color: rgba(255,255,255,0.85);
+        }
+        .maintenance-card.alt li::before {
+            color: #38bdf8;
+        }
+        .maintenance-card h4 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .maintenance-card .price {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .maintenance-card .price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
+        .maintenance-card.alt .price span {
+            color: rgba(255,255,255,0.6);
+        }
+        .maintenance-card ul {
+            list-style: none;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .maintenance-card li {
+            padding: 8px 0;
+            color: var(--gray-600);
+            transition: transform 0.2s ease;
+        }
+        .maintenance-card li:hover {
+            transform: translateX(5px);
+        }
+        .maintenance-card li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 0.85rem;
+        }
+        .maintenance-card .btn {
+            display: none;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+        .maintenance-card .features-preview {
+            display: none;
+        }
+
+        .cta-box {
+            text-align: center;
+            margin-top: 60px;
+            padding: 50px;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            border-radius: 24px;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .cta-box h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .cta-box p {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        /* Prozess */
+        .prozess {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .prozess::before {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+        .prozess .container {
+            position: relative;
+            z-index: 1;
+        }
+        .prozess .section-title {
+            color: var(--white);
+        }
+        .prozess .section-subtitle {
+            color: #94a3b8;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+            max-width: 1150px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .process-step {
+            text-align: center;
+            position: relative;
+            padding: 32px 16px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.35s ease;
+        }
+        .process-step:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-6px);
+        }
+        .process-step::after {
+            content: "→";
+            position: absolute;
+            right: -22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+        .process-step:last-child::after {
+            display: none;
+        }
+        .process-step .number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.4);
+        }
+        .process-step:hover .number {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.5);
+        }
+        .process-step h4 {
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .process-step p {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Self-Service Section */
+        .self-service {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .self-service::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+        .self-service .container {
+            position: relative;
+            z-index: 1;
+        }
+        .self-service .section-title {
+            color: var(--white);
+        }
+        .self-service .section-subtitle {
+            color: #94a3b8;
+        }
+        .ss-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 950px;
+            margin: 50px auto 0;
+        }
+        .ss-card {
+            background: rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 44px 36px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .ss-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+        .ss-card:hover::before {
+            transform: scaleX(1);
+        }
+        .ss-card:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+        }
+        .ss-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: transform 0.4s ease;
+        }
+        .ss-card:hover .ss-icon {
+            transform: scale(1.1) rotate(-3deg);
+        }
+        .ss-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+        .ss-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+        .ss-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .ss-price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+        }
+        .ss-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .ss-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .ss-card li {
+            padding: 8px 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            padding-left: 24px;
+            position: relative;
+        }
+        .ss-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        .ss-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .ss-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        .ss-btn-primary {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35);
+            text-decoration: none;
+        }
+        .ss-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.5);
+        }
+        .ss-ultimate {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            max-width: 950px;
+            margin: 48px auto 0;
+            background: rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 36px 44px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            transition: all 0.35s ease;
+        }
+        .ss-ultimate:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.5);
+            box-shadow: 0 16px 50px rgba(14, 165, 233, 0.15);
+        }
+        .ss-ultimate-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.4);
+        }
+        .ss-ultimate-icon svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+        .ss-ultimate-text {
+            flex-grow: 1;
+        }
+        .ss-ultimate-text h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .ss-ultimate-text p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .ss-ultimate .ss-btn-primary {
+            flex-shrink: 0;
+        }
+
+        /* Warum */
+        .warum {
+            background: var(--white);
+            position: relative;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            max-width: 1050px;
+            margin: 50px auto 0;
+        }
+        .why-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 36px 28px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+        .why-card:hover::before {
+            transform: scaleX(1);
+        }
+        .why-card:hover {
+            border-color: transparent;
+            box-shadow: 0 24px 60px rgba(30, 64, 175, 0.12);
+            transform: translateY(-8px);
+        }
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        .why-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        .why-desc {
+            font-size: 0.92rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+        .faq .container {
+            position: relative;
+            z-index: 1;
+        }
+        .faq .section-title {
+            color: var(--white);
+        }
+        .faq .section-subtitle {
+            color: #94a3b8;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            max-width: 1050px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.07);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.35s ease;
+        }
+        .faq-item:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        }
+        .faq-item h4 {
+            color: var(--white);
+            margin-bottom: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .faq-item p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: float 9s ease-in-out infinite;
+        }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: float 11s ease-in-out infinite reverse;
+        }
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+        .cta-section p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 36px;
+            color: #94a3b8;
+            position: relative;
+        }
+        .cta-section .btn {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            color: var(--white);
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+            padding: 18px 48px;
+        }
+        .cta-section .btn:hover,
+        .cta-section .btn:focus {
+            background: var(--gray-100);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: var(--gray-400);
+            padding: 56px 0;
+        }
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 28px;
+            text-align: center;
+        }
+        footer a {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-light);
+            transition: width 0.3s ease;
+        }
+        footer a:hover {
+            color: var(--white);
+        }
+        footer a:hover::after {
+            width: 100%;
+        }
+        footer .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            z-index: 1000;
+            border-radius: 0 0 8px 0;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus States */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .choice-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 500px;
+            }
+            .choice-card {
+                padding: 32px 24px;
+                text-align: left;
+            }
+            .choice-card .card-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 16px;
+            }
+            .choice-card .card-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            .choice-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            .choice-card p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            .choice-card .btn-large {
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
+            }
+            .hero-trust {
+                gap: 20px;
+                margin-bottom: 32px;
+            }
+            .trust-item .num {
+                font-size: 1.5rem;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .maintenance-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .process-step::after {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 70px 0;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            nav .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .nav-links {
+                display: none;
+            }
+            .burger {
+                display: flex;
+            }
+            .hero {
+                padding: 100px 0 70px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: -0.02em;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-description {
+                font-size: 0.95rem;
+            }
+            .hero-features {
+                gap: 10px;
+                margin-bottom: 36px;
+            }
+            .hero-features li {
+                font-size: 0.9rem;
+                padding: 8px 0;
+                padding-left: 28px;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            /* Mobile Choice Cards */
+            .choice-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                max-width: 100%;
+            }
+/* Mobile Pricing */
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                max-width: 450px;
+                margin: 0 auto;
+                align-items: stretch;
+            }
+            .pricing-card {
+                padding: 16px 10px;
+            }
+            .pricing-card.featured {
+                transform: none;
+                padding: 20px 12px;
+            }
+            .pricing-card.featured:hover {
+                transform: translateY(-3px);
+            }
+            .pricing-label {
+                font-size: 0.55rem;
+                letter-spacing: 0.5px;
+                margin-bottom: 2px;
+            }
+            .pricing-card h3 {
+                font-size: 0.85rem;
+                margin-bottom: 0;
+            }
+            .pricing-price {
+                font-size: 1.15rem;
+            }
+            .pricing-price span {
+                font-size: 0.6rem;
+            }
+            .pricing-features {
+                display: none;
+            }
+            .pricing-features-preview {
+                display: block;
+                list-style: none;
+                margin: 10px 0;
+            }
+            .pricing-features-preview li {
+                font-size: 0.6rem;
+                padding: 2px 0;
+                color: var(--gray-600);
+            }
+            .pricing-cta {
+                display: none;
+            }
+            .pricing-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-top: 10px;
+            }
+            .pricing-buttons .btn {
+                display: block;
+                padding: 8px 6px;
+                font-size: 0.65rem;
+                border-radius: 6px;
+                text-decoration: none;
+                text-align: center;
+                font-weight: 600;
+            }
+            .pricing-buttons .btn-outline {
+                background: transparent;
+                border: 1px solid var(--primary);
+                color: var(--primary);
+            }
+            .pricing-buttons .btn-accent {
+                background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+                color: white;
+                border: none;
+            }
+
+            /* Mobile Self-Service */
+            .ss-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 450px;
+            }
+            .ss-card {
+                padding: 32px 24px;
+            }
+            .ss-card ul {
+                display: none;
+            }
+            .ss-card .ss-desc {
+                display: block;
+            }
+            .ss-ultimate {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 24px;
+                gap: 20px;
+            }
+            .ss-ultimate-text h3 {
+                font-size: 1.2rem;
+            }
+            .ss-ultimate .ss-btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Mobile Maintenance */
+            .maintenance-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+                gap: 16px;
+            }
+            .maintenance-card {
+                padding: 24px 20px;
+            }
+            .maintenance-card h4 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            .maintenance-card .price {
+                font-size: 1.6rem;
+                margin-bottom: 8px;
+            }
+            .maintenance-card .price span {
+                font-size: 0.75rem;
+            }
+            .maintenance-card ul {
+                display: none;
+            }
+            .maintenance-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .maintenance-card {
+                padding: 20px 12px;
+            }
+            .maintenance-card h4 {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+            .maintenance-card .price {
+                font-size: 1.4rem;
+                margin-bottom: 0;
+            }
+            .maintenance-card .price span {
+                font-size: 0.7rem;
+            }
+            .maintenance-card ul {
+                display: none;
+            }
+            .maintenance-card .btn {
+                display: block;
+                padding: 10px 14px;
+                font-size: 0.7rem;
+                margin-top: 14px;
+            }
+            .maintenance-card .features-preview {
+                display: block;
+                text-align: center;
+                margin-bottom: 12px;
+                list-style: none;
+            }
+            .maintenance-card .features-preview li {
+                font-size: 0.6rem;
+                padding: 2px 0;
+                color: var(--gray-600);
+            }
+            .maintenance-card.alt .features-preview li {
+                color: rgba(255,255,255,0.85);
+            }
+            .maintenance-card.no-expand .btn {
+                display: none;
+            }
+            .maintenance-card.no-expand .features-preview {
+                display: block !important;
+            }
+
+            /* Mobile Process */
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .process-step {
+                display: flex;
+                align-items: flex-start;
+                gap: 16px;
+                text-align: left;
+                padding: 16px;
+            }
+            .process-step .number {
+                width: 48px;
+                height: 48px;
+                font-size: 1.25rem;
+                margin: 0;
+                flex-shrink: 0;
+            }
+            .process-step h4 {
+                margin-bottom: 6px;
+            }
+            .process-step p {
+                font-size: 0.85rem;
+            }
+
+            /* Mobile FAQ */
+            .faq-item {
+                padding: 24px 20px;
+            }
+            .faq-item h4 {
+                font-size: 1rem;
+            }
+            .faq-item p {
+                font-size: 0.9rem;
+            }
+
+            /* Mobile CTA */
+            .cta-section {
+                padding: 80px 0;
+            }
+            .cta-section h2 {
+                font-size: 1.75rem;
+            }
+            .cta-section p {
+                font-size: 1.05rem;
+            }
+            .cta-section .btn {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+
+            /* Mobile Footer */
+            footer {
+                padding: 40px 0;
+            }
+            footer .container {
+                gap: 6px 20px;
+            }
+            footer a {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Hauptnavigation">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
                             <stop offset="0%" stop-color="#22d3ee"/>
@@ -125,149 +1812,518 @@
                     <path d="M14 16H26M14 20H24M14 24H22" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
                     <circle cx="27" cy="16" r="3" fill="url(#logoGrad)"/>
                 </svg>
-            fudora
-        </a>
+                <span class="logo-text">fudora</span>
+            </a>
+            <div class="nav-links">
+                <a href="#auswahl">Auswahl</a>
+                <a href="#pakete">Pakete</a>
+                <a href="#wartung">Wartung</a>
+                <a href="#prozess">Prozess</a>
+                <a href="#faq">FAQ</a>
+                <a href="mailto:pascalroe@proton.me" class="highlight-link">Kontakt</a>
+            </div>
+            <button class="burger" aria-label="Menü öffnen" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
-    
-    <a href="index.html" class="back">← Zurück zur Startseite</a>
-    
-    <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
-    
-    <h2>1. Geltungsbereich</h2>
-    <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen</p>
-    <p>[Name / Firmenname]<br>
-    [Adresse]<br>
-    [PLZ, Ort]</p>
-    <p>– nachfolgend „Anbieter" –</p>
-    <p>und dem Kunden über Dienstleistungen im Bereich Webdesign, Entwicklung, Hosting-Beratung sowie Wartung von Websites.</p>
-    <p>Abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, der Anbieter stimmt ihrer Geltung ausdrücklich zu.</p>
-    
-    <hr class="divider">
-    
-    <h2>2. Leistungen</h2>
-    <p>Der Anbieter bietet insbesondere folgende Leistungen an:</p>
-    <ul>
-        <li>Erstellung von Websites</li>
-        <li>Anpassung und Optimierung bestehender Websites</li>
-        <li>Technische Beratung</li>
-        <li>Einrichtung von Hosting (z. B. über GitHub Pages)</li>
-        <li>Integration von Drittanbietern (z. B. Cloudflare)</li>
-        <li>Wartung und Betreuung (sofern vereinbart)</li>
-    </ul>
-    <p>Der konkrete Leistungsumfang ergibt sich aus dem jeweiligen Angebot oder Vertrag.</p>
-    
-    <hr class="divider">
-    
-    <h2>3. Vertragsschluss</h2>
-    <p>Ein Vertrag kommt zustande durch:</p>
-    <ul>
-        <li>Annahme eines Angebots durch den Kunden oder</li>
-        <li>schriftliche Bestätigung durch den Anbieter</li>
-    </ul>
-    
-    <hr class="divider">
-    
-    <h2>4. Mitwirkungspflichten des Kunden</h2>
-    <p>Der Kunde verpflichtet sich:</p>
-    <ul>
-        <li>alle erforderlichen Inhalte (Texte, Bilder, Logos) bereitzustellen</li>
-        <li>notwendige Zugangsdaten rechtzeitig zu übermitteln</li>
-        <li>rechtlich zulässige Inhalte zu liefern</li>
-    </ul>
-    <p>Verzögerungen aufgrund fehlender Mitwirkung gehen nicht zu Lasten des Anbieters.</p>
-    
-    <hr class="divider">
-    
-    <h2>5. Vergütung</h2>
-    <p>Die Vergütung erfolgt gemäß individuellem Angebot.</p>
-    <p>Sofern nicht anders vereinbart:</p>
-    <ul>
-        <li>ist eine Anzahlung möglich</li>
-        <li>ist der Restbetrag nach Fertigstellung fällig</li>
-    </ul>
-    <p>Der Anbieter ist berechtigt, Teilleistungen in Rechnung zu stellen.</p>
-    
-    <hr class="divider">
-    
-    <h2>6. Nutzungsrechte</h2>
-    <p>Nach vollständiger Bezahlung erhält der Kunde ein einfaches Nutzungsrecht an der erstellten Website.</p>
-    <p>Der Anbieter behält sich vor:</p>
-    <ul>
-        <li>Projekte zu Referenzzwecken zu verwenden</li>
-        <li>seinen Namen im Impressum der Website zu nennen (sofern nicht widersprochen)</li>
-    </ul>
-    
-    <hr class="divider">
-    
-    <h2>7. Hosting und Drittanbieter</h2>
-    <p>Die Website kann über externe Dienste bereitgestellt werden, insbesondere:</p>
-    <ul>
-        <li>GitHub (Hosting)</li>
-        <li>Cloudflare (CDN, Sicherheit)</li>
-    </ul>
-    <p>Der Anbieter übernimmt keine Haftung für:</p>
-    <ul>
-        <li>Ausfälle dieser Dienste</li>
-        <li>Änderungen der Anbieter</li>
-        <li>Datenverluste außerhalb seines Einflussbereichs</li>
-    </ul>
-    <p>Es gelten zusätzlich die Bedingungen der jeweiligen Drittanbieter.</p>
-    
-    <hr class="divider">
-    
-    <h2>8. Wartung und Betreuung</h2>
-    <p>Sofern Wartung vereinbart wurde:</p>
-    <ul>
-        <li>erfolgt diese im vereinbarten Umfang</li>
-        <li>umfasst sie keine inhaltlichen Änderungen (sofern nicht vereinbart)</li>
-    </ul>
-    <p>Ohne Wartungsvertrag besteht kein Anspruch auf Support.</p>
-    
-    <hr class="divider">
-    
-    <h2>9. Haftung</h2>
-    <p>Der Anbieter haftet nur für:</p>
-    <ul>
-        <li>Vorsatz und grobe Fahrlässigkeit</li>
-    </ul>
-    <p>Für einfache Fahrlässigkeit haftet der Anbieter nur bei Verletzung wesentlicher Vertragspflichten.</p>
-    <p>Keine Haftung besteht für:</p>
-    <ul>
-        <li>vom Kunden bereitgestellte Inhalte</li>
-        <li>rechtliche Verstöße auf Kunden-Websites</li>
-        <li>externe Dienste und Drittanbieter</li>
-    </ul>
-    
-    <hr class="divider">
-    
-    <h2>10. Verantwortlichkeit für Inhalte</h2>
-    <p>Der Kunde ist allein verantwortlich für:</p>
-    <ul>
-        <li>Inhalte der Website</li>
-        <li>Einhaltung rechtlicher Vorschriften (z. B. Datenschutz, Impressum)</li>
-    </ul>
-    
-    <hr class="divider">
-    
-    <h2>11. Datenschutz</h2>
-    <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß der Datenschutz-Grundverordnung (DSGVO).</p>
-    <p>Sofern der Anbieter personenbezogene Daten im Auftrag verarbeitet, wird ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO abgeschlossen.</p>
-    
-    <hr class="divider">
-    
-    <h2>12. Vertragslaufzeit und Kündigung</h2>
-    <p>Einmalige Leistungen enden mit Fertigstellung.</p>
-    <p>Laufende Leistungen (z. B. Wartung) können von beiden Parteien mit einer Frist von [z. B. 4 Wochen] gekündigt werden, sofern nichts anderes vereinbart wurde.</p>
-    
-    <hr class="divider">
-    
-    <h2>13. Schlussbestimmungen</h2>
-    <p>Es gilt das Recht der Bundesrepublik Deutschland.</p>
-    <p>Gerichtsstand ist – soweit zulässig – der Sitz des Anbieters.</p>
-    <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-    
-    <footer>
-        <p>© 2026 fudora. Alle Rechte vorbehalten.</p>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#auswahl" class="mobile-link">Auswahl</a>
+        <a href="#pakete" class="mobile-link">Pakete</a>
+        <a href="#wartung" class="mobile-link">Wartung</a>
+        <a href="#prozess" class="mobile-link">Prozess</a>
+        <a href="faq.html" class="mobile-link">FAQ</a>
+        <a href="mailto:pascalroe@proton.me" class="mobile-link">Kontakt</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">KI-gestützter Website-Bau</div>
+            <h1>Ihre Website. <span class="accent">Schnell. Professionell. Bezahlbar.</span></h1>
+            <p class="hero-subtitle">Für Selbstständige und kleine Unternehmen, die online überzeugen wollen - ohne Agentur-Preise und ohne Monate zu warten.</p>
+
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <span class="num">1-2 Wochen</span>
+                    <span class="label">bis Live</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">100%</span>
+                    <span class="label">DSGVO-konform</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">3×</span>
+                    <span class="label">Revisionsrunden</span>
+                </div>
+                <div class="trust-item">
+                    <span class="num">100%</span>
+                    <span class="label">Ihr Eigentum</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
+                <a href="#auswahl" class="btn btn-large btn-outline" style="color: white; border: 2px solid rgba(255,255,255,0.35); background: transparent;">Mehr erfahren</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Choice Section -->
+    <section class="choice" id="auswahl" aria-labelledby="choice-title">
+        <div class="container">
+            <h2 id="choice-title" class="section-title">Was können wir für Sie tun?</h2>
+            <p class="section-subtitle">Wählen Sie die Option, die am besten zu Ihrer Situation passt.</p>
+
+            <div class="choice-grid">
+                <article class="choice-card animate-on-scroll">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                    <h3>Neue Webseite erstellen</h3>
+                    <p>Sie haben noch keine Webseite? Wir erstellen eine komplett neue, maßgeschneiderte Lösung für Sie - von Grund auf.</p>
+                    <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
+                </article>
+
+                <article class="choice-card animate-on-scroll delay-1">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </div>
+                    <h3>Webseite erneuern (Relaunch)</h3>
+                    <p>Sie haben bereits eine Webseite, die nicht mehr aktuell ist? Wir modernisieren und relaunchen sie für Sie.</p>
+                    <a href="relaunch.html" class="btn btn-large btn-outline">Kostenlose Einschätzung</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <!-- Pakete Section -->
+        <section class="pakete" id="pakete" aria-labelledby="pakete-title">
+            <div class="container">
+                <h2 id="pakete-title" class="section-title">Pakete & Preise</h2>
+
+                <div class="pricing-grid">
+                    <!-- Basis -->
+                    <article class="pricing-card animate-on-scroll">
+                        <div class="pricing-label">Einstieg</div>
+                        <h3>Basis</h3>
+                        <div class="pricing-price">690€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>One-Pager Website</li>
+                            <li>Responsives Design</li>
+                            <li>Hosting inklusive</li>
+                        </ul>
+                        <ul class="pricing-features">
+                            <li>Einseitige Website (One-Pager)</li>
+                            <li>Responsives Design</li>
+                            <li>Kontaktformular mit E-Mail-Weiterleitung</li>
+                            <li>Google-Optimierung (Meta-Tags, Sitemap)</li>
+                            <li>Hosting auf Cloudflare Pages</li>
+                            <li>DSGVO-konform (ohne Cookies)</li>
+                            <li>Übergabe aller Dateien</li>
+                        </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
+                        <div class="pricing-buttons">
+                            <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
+                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
+                        </div>
+                    </article>
+
+                    <!-- Standard -->
+                    <article class="pricing-card featured animate-on-scroll delay-1">
+                        <div class="pricing-label">Beliebt</div>
+                        <h3>Standard</h3>
+                        <div class="pricing-price">1.290€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>5 Unterseiten</li>
+                            <li>Bildergalerie</li>
+                            <li>SEO-optimiert</li>
+                        </ul>
+                        <ul class="pricing-features">
+                            <li>Alles aus Basis</li>
+                            <li>Bis zu 5 Unterseiten</li>
+                            <li>Bildergalerie für Projekte & Team</li>
+                            <li>Vorher-Nachher-Bereich für Referenzen</li>
+                            <li>Google Maps (datenschutzkonform)</li>
+                            <li>Erweiterte SEO-Optimierung</li>
+                            <li>Google My Business-Einrichtung</li>
+                            <li>Textunterstützung durch KI</li>
+                            <li>2 Revisionsrunden inklusive</li>
+                        </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
+                        <div class="pricing-buttons">
+                            <a href="pakete.html" class="btn">Mehr erfahren</a>
+                            <a href="mailto:pascalroe@proton.me" class="btn btn-sm btn-accent">Anfragen</a>
+                        </div>
+                    </article>
+
+                    <!-- Premium -->
+                    <article class="pricing-card animate-on-scroll delay-2">
+                        <div class="pricing-label">Premium</div>
+                        <h3>Premium</h3>
+                        <div class="pricing-price">2.490€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>10 Unterseiten</li>
+                            <li>Individuelles Design</li>
+                            <li>Blog-Bereich</li>
+                        </ul>
+                        <ul class="pricing-features">
+                            <li>Alles aus Standard</li>
+                            <li>Bis zu 10 Unterseiten</li>
+                            <li>Individuelles Design (eigene Farbwelt/Typografie)</li>
+                            <li>Blog-/News-Bereich (auf Wunsch)</li>
+                            <li>Terminbuchungs-Anbindung (Calendly/Cal.com)</li>
+                            <li>SEO-Check nach 4 Wochen</li>
+                            <li>DSGVO-freundliche Analytics-Alternative</li>
+                            <li>3 Revisionsrunden inklusive</li>
+                        </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
+                        <div class="pricing-buttons">
+                            <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
+                            <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wartung Section -->
+        <section class="wartung" id="wartung" aria-labelledby="wartung-title">
+            <div class="container">
+                <h2 id="wartung-title" class="section-title">Wartung & Betreuung</h2>
+
+                <div class="wartung-subsection">
+                    <h3 class="subsection-title">Wartung & Hosting</h3>
+                    <div class="maintenance-grid">
+                        <article class="maintenance-card animate-on-scroll">
+                            <h4>Essenziell</h4>
+                            <div class="price">19€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Hosting-Betreuung</li>
+                                <li>Domain-Management</li>
+                                <li>SSL automatisch</li>
+                            </ul>
+                            <ul>
+                                <li>Hosting-Betreuung (Cloudflare)</li>
+                                <li>Domain-Verlängerungs-Management</li>
+                                <li>SSL-Zertifikate automatisch</li>
+                                <li>Erreichbarkeits-Monitoring</li>
+                                <li>Jährlicher Sicherheits-Check</li>
+                            </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                        </article>
+
+                        <article class="maintenance-card animate-on-scroll delay-1">
+                            <h4>Pflege</h4>
+                            <div class="price">29€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Alles aus Essenziell</li>
+                                <li>2 Änderungen/Monat</li>
+                                <li>Support 48h</li>
+                            </ul>
+                            <ul>
+                                <li>Alles aus Essenziell</li>
+                                <li>2 kleine Änderungen pro Monat</li>
+                                <li>Jährlicher Funktions-Check</li>
+                                <li>E-Mail-Support binnen 48h</li>
+                            </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                        </article>
+
+                        <article class="maintenance-card animate-on-scroll delay-2">
+                            <h4>Aktiv</h4>
+                            <div class="price">59€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Alles aus Pflege</li>
+                                <li>5 Änderungen/Monat</li>
+                                <li>Support 24h</li>
+                            </ul>
+                            <ul>
+                                <li>Alles aus Pflege</li>
+                                <li>Bis zu 5 Änderungen pro Monat</li>
+                                <li>Neue Referenzprojekte einpflegen</li>
+                                <li>Quartalsweiser SEO-Check</li>
+                                <li>Priorisierter Support binnen 24h</li>
+                            </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="cta-box animate-on-scroll">
+                    <h3>Fragen zu den Paketen?</h3>
+                    <p>Schreiben Sie uns - wir beraten Sie gerne und finden das perfekte Paket für Sie.</p>
+                    <a href="kontakt.html" class="btn">Kostenlos beraten lassen</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prozess Section -->
+        <section class="prozess" id="prozess" aria-labelledby="prozess-title">
+            <div class="container">
+                <h2 id="prozess-title" class="section-title">So arbeiten wir zusammen</h2>
+
+                <div class="process-grid">
+                    <article class="process-step animate-on-scroll">
+                        <div class="number">1</div>
+                        <h4>Fragebogen ausfüllen</h4>
+                        <p>Sie füllen unseren Fragebogen aus - ganz bequem online. So lernen wir Ihr Unternehmen und Ihre Wünsche kennen.</p>
+                    </article>
+
+                    <article class="process-step animate-on-scroll delay-1">
+                        <div class="number">2</div>
+                        <h4>Erster Entwurf (kostenlos)</h4>
+                        <p>Basierend auf Ihren Angaben erstellen wir einen ersten Entwurf. Sie sehen sofort, wie Ihre Website aussehen wird.</p>
+                    </article>
+
+                    <article class="process-step animate-on-scroll delay-2">
+                        <div class="number">3</div>
+                        <h4>Feedback & Feinschliff</h4>
+                        <p>Sie geben Feedback, wir optimieren. In bis zu 3 Revisionsrunden (je nach Paket) perfektionieren wir alles.</p>
+                    </article>
+
+                    <article class="process-step animate-on-scroll delay-3">
+                        <div class="number">4</div>
+                        <h4>Final Review</h4>
+                        <p>Wir senden Ihnen alle Bilder und Texte zur Durchsicht. Last but not least: Ihre finale Freigabe.</p>
+                    </article>
+
+                    <article class="process-step animate-on-scroll delay-4">
+                        <div class="number">5</div>
+                        <h4>Live-Schaltung</h4>
+                        <p>Ihre Website geht online! Sie erhalten alle Dateien und können sofort durchstarten.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Self-Service Section -->
+        <section class="self-service" id="self-service" aria-labelledby="selfservice-title">
+            <div class="container">
+                <h2 id="selfservice-title" class="section-title">Eigenregie & Hosting-Partner</h2>
+                <p class="section-subtitle">Sie bevorzugen den Do-it-yourself-Ansatz oder möchten nur bestimmte Leistungen? Wir haben passende Optionen.</p>
+
+                <div class="ss-grid">
+                    <article class="ss-card animate-on-scroll">
+                        <div class="ss-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25z" />
+                            </svg>
+                        </div>
+                        <h4>Self-Service</h4>
+                        <div class="ss-price">0€ <span>/Monat</span></div>
+                        <p class="ss-desc">Sie kümmern sich komplett selbst – wir liefern nur die Dateien.</p>
+                        <ul>
+                            <li>Alle Website-Dateien werden übergeben</li>
+                            <li>Sie wählen Ihren eigenen Hoster</li>
+                            <li>Änderungen auf Anfrage (nach Aufwand)</li>
+                            <li>Support nur per E-Mail</li>
+                        </ul>
+                        <a href="mailto:pascalroe@proton.me?subject=Self-Service%20Anfrage" class="btn ss-btn">Dateien anfragen</a>
+                    </article>
+
+                    <article class="ss-card animate-on-scroll delay-1">
+                        <div class="ss-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4 4 0 0 1 4 4v2a.5.5 0 0 1-1 0V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a.5.5 0 0 0-1 0V15a4 4 0 0 1-4 4h-2.25M2.25 15a4 4 0 0 0 4 4h12.5M2.25 15v2.25m13.5-9v2.25M7.5 15v2.25m13.5-9v2.25" />
+                            </svg>
+                        </div>
+                        <h4>Hosting-Partner</h4>
+                        <div class="ss-price">19–24€ <span>/Monat</span></div>
+                        <p class="ss-desc">Wir hosten für Sie – inklusive kleinerer Änderungen.</p>
+                        <ul>
+                            <li>Jährlich (19€) oder monatlich (24€)</li>
+                            <li>Cloudflare-Hosting inklusive</li>
+                            <li>Bis zu 2 kleine Änderungen pro Monat</li>
+                            <li>Umsetzung innerhalb 48h</li>
+                        </ul>
+                        <a href="mailto:pascalroe@proton.me?subject=Hosting-Partner%20Anfrage" class="btn ss-btn-primary">Hosting starten</a>
+                    </article>
+                </div>
+
+                <div class="ss-ultimate animate-on-scroll">
+                    <div class="ss-ultimate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <div class="ss-ultimate-text">
+                        <h3>Ultimative Betreuung</h3>
+                        <p>Premium-Paket inklusive + bis zu 8 Änderungen pro Monat – alles aus einer Hand.</p>
+                    </div>
+                    <a href="mailto:pascalroe@proton.me?subject=Ultimative%20Betreuung%20Anfrage" class="btn ss-btn-primary">Auf Anfrage →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warum Section -->
+        <section class="warum animate-on-scroll" aria-labelledby="warum-title">
+            <div class="container">
+                <h2 id="warum-title" class="section-title">Warum wir?</h2>
+                <p class="section-subtitle">Keine Massenabfertigung. Jedes Projekt wird individuell geplant und umgesetzt.</p>
+                <div class="why-grid">
+                    <div class="why-card animate-on-scroll">
+                        <div class="why-icon">⚡</div>
+                        <div class="why-title">KI-gestützte Effizienz</div>
+                        <div class="why-desc">Dank eigener KI-Technologie erstellen wir Websites deutlich schneller als herkömmliche Agenturen - und geben die Ersparnis an Sie weiter.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-1">
+                        <div class="why-icon">🔒</div>
+                        <div class="why-title">Volle Kontrolle</div>
+                        <div class="why-desc">Sie erhalten alle Dateien. Keine Lock-in-Effekte, keine Abhängigkeit. Die Website gehört Ihnen - heute und in Zukunft.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-2">
+                        <div class="why-icon">🌱</div>
+                        <div class="why-title">Nachhaltig gedacht</div>
+                        <div class="why-desc">Schnelle Ladezeiten, schlanker Code und energieeffizientes Hosting - gut für Ihre Besucher und die Umwelt.</div>
+                    </div>
+                    <div class="why-card animate-on-scroll delay-3">
+                        <div class="why-icon">💬</div>
+                        <div class="why-title">Direkte Kommunikation</div>
+                        <div class="why-desc">Sie sprechen direkt mit uns - kein Umweg, kein Account-Manager dazwischen. Kurze Wege, schnelle Antworten.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title" class="section-title">Häufige Fragen</h2>
+
+                <div class="faq-grid">
+                    <article class="faq-item animate-on-scroll">
+                        <h4>Wie lange dauert der Prozess?</h4>
+                        <p>Die Dauer hängt vom gewählten Paket und Ihren Rückmeldezeiten ab. Kleinere Websites (Basis) sind oft schon nach 1-2 Wochen live. Umfassendere Projekte (Premium) planen wir mit 3-4 Wochen ein. Durch unsere KI-Unterstützung sind wir aber deutlich schneller als herkömmliche Agenturen.</p>
+                    </article>
+
+                    <article class="faq-item animate-on-scroll delay-1">
+                        <h4>Kann ich später Änderungen vornehmen lassen?</h4>
+                        <p>Kein Problem! Sie können jederzeit Wartungspakete buchen (ab 19€/Monat) oder einzelne Änderungen beauftragen. Die Dateien gehören Ihnen - Sie haben jederzeit volle Kontrolle über Ihre Website.</p>
+                    </article>
+
+                    <article class="faq-item animate-on-scroll delay-2">
+                        <h4>Sind die Websites mobil-optimiert?</h4>
+                        <p>Absolut! Alle unsere Websites sind von Grund auf "responsive" - sie passen sich automatisch an mobile Geräte, Tablets und Desktops an. Das ist heute Standard und wichtig für Google-Rankings.</p>
+                    </article>
+                </div>
+
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="faq.html" class="btn btn-large animate-on-scroll" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);">Alle FAQs ansehen →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="kontakt" aria-labelledby="cta-title">
+            <div class="container">
+                <h2 id="cta-title">Bereit für Ihre neue Webseite?</h2>
+                <p>Lassen Sie uns reden. Wir freuen uns auf Ihre Nachricht.</p>
+                <a href="kontakt.html" class="btn btn-large">Kontakt aufnehmen</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <a href="impressum.html">Impressum</a>
+            <a href="agb.html">AGB</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="mailto:pascalroe@proton.me">Kontakt</a>
+            <p class="copyright">&copy; 2026 fudora. Alle Rechte vorbehalten.</p>
+        </div>
     </footer>
+
+    <script>
+        // Scroll animations
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Hide navbar on scroll down, show on scroll up
+        let lastScrollY = window.scrollY;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                nav.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+
+        // Burger Menu Toggle
+        const burger = document.querySelector('.burger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        burger.addEventListener('click', () => {
+            const isOpen = burger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            burger.setAttribute('aria-expanded', isOpen);
+            burger.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        // Close menu when link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Toggle Details for Maintenance Cards
+        function toggleDetails(btn) {
+            const card = btn.closest('.maintenance-card');
+            const fullList = card.querySelector('ul:not(.features-preview)');
+            const previewList = card.querySelector('.features-preview');
+
+            if (fullList.style.display === 'block') {
+                fullList.style.display = 'none';
+                previewList.style.display = 'block';
+                btn.textContent = 'Mehr erfahren';
+            } else {
+                fullList.style.display = 'block';
+                previewList.style.display = 'none';
+                btn.textContent = 'Weniger anzeigen';
+            }
+        }
+    </script>
 </body>
 </html>
