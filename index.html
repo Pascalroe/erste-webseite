@@ -1638,20 +1638,21 @@
         .templates-gallery {
             position: relative;
             display: block;
-            max-width: 1100px;
+            max-width: 1400px;
             margin: 40px auto 0;
+            overflow: hidden;
         }
         
         .templates-gallery .templates-grid {
             display: flex;
-            overflow: hidden;
             gap: 16px;
-            scroll-behavior: smooth;
+            transition: transform 0.4s ease;
+            width: max-content;
         }
         
         .templates-gallery .template-card {
-            flex: 0 0 calc(33.333% - 11px);
-            min-width: calc(33.333% - 11px);
+            flex: 0 0 calc(20% - 13px);
+            min-width: calc(20% - 13px);
         }
         
         .gallery-arrow {
@@ -4063,17 +4064,15 @@
             const grid = gallery.querySelector('.templates-grid');
             const cards = Array.from(grid.querySelectorAll('.template-card'));
             const totalCards = cards.length;
-            const visibleCards = 3;
+            const visibleCards = 5;
             const cardWidth = cards[0].offsetWidth + 16; // include gap
-            const maxSlide = Math.max(0, totalCards - visibleCards);
             
             let currentSlide = 0;
             
             // Create dots
             const dotsContainer = gallery.querySelector('.gallery-dots');
-            const totalDots = maxSlide + 1;
             
-            for (let i = 0; i <= maxSlide; i++) {
+            for (let i = 0; i < totalCards; i++) {
                 const dot = document.createElement('button');
                 dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
                 dot.setAttribute('aria-label', 'Zu Template ' + (i + 1));
@@ -4089,19 +4088,26 @@
             }
             
             function goToSlide(index) {
-                currentSlide = Math.max(0, Math.min(index, maxSlide));
+                currentSlide = index;
                 grid.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
                 updateDots();
             }
             
-            // Arrow buttons
+            // Infinite loop
             gallery.querySelector('.gallery-prev').addEventListener('click', () => {
-                if (currentSlide > 0) goToSlide(currentSlide - 1);
+                currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+                goToSlide(currentSlide);
             });
             
             gallery.querySelector('.gallery-next').addEventListener('click', () => {
-                if (currentSlide < maxSlide) goToSlide(currentSlide + 1);
+                currentSlide = (currentSlide + 1) % totalCards;
+                goToSlide(currentSlide);
             });
+            
+            // Start with Template 2 (index 1) in the middle
+            setTimeout(() => {
+                goToSlide(1);
+            }, 100);
         }
     </script>
 </body>
